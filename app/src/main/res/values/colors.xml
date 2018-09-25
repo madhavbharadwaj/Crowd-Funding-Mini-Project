@@ -4,7 +4,8 @@
 
 
     <color name="colorPrimary">#455a64</color>
-    <color name="colorPrimaryDark">#c7c7c7</color>
+    <color name="colorPrimaryDark">
+        #2e3740</color>
     <color name="colorAccent">#455a64</color>
 
     <color name="landing_text_color">#757575</color>
