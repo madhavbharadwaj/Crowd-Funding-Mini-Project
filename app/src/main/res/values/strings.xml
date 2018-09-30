@@ -15,5 +15,8 @@
     <string name="allprojects">All Projects</string>
     <string name="mcastring">MCA Projects</string>
     <string name="iclstring">ICL Projects</string>
+    <string name="new_tab">Newest Tab</string>
+    <string name="pop_tab">Popular Tab</string>
+    <string name="up_tab">Upcoming Tab</string>
 
 </resources>
