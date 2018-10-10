@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Home.Dashboard"></activity>
+        <activity android:name=".Home.Dashboard" />
+        <activity android:name=".login_signup.RegLogActivity"></activity>
     </application>
 
 </manifest>

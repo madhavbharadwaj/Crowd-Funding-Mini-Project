@@ -1,5 +1,6 @@
 package com.example.madhav.starter.Home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -14,12 +15,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.madhav.starter.Home.categories.newest;
 import com.example.madhav.starter.Home.categories.popular;
 import com.example.madhav.starter.Home.categories.upcoming;
 import com.example.madhav.starter.R;
 import com.example.madhav.starter.Splash_Screen.LaunchScreenActivity;
+import com.example.madhav.starter.login_signup.RegLogActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,15 +36,18 @@ public class Dashboard extends AppCompatActivity
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private LinearLayout tv_login;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
 
-
+     //  tv_login = findViewById(R.id.ll);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -49,7 +59,26 @@ public class Dashboard extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         all_projects fir = new all_projects();
 
+
+
+
         setTitle("All Projects");
+
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.login);
+       // navUsername.setText("Your Text Here");
+        navUsername.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Toast.makeText(getApplicationContext(), "Login Successful",
+                        Toast.LENGTH_LONG).show();*/
+
+
+                Intent intent = new Intent(Dashboard.this, RegLogActivity.class);
+                startActivity(intent);
+            }
+        });
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
 
@@ -62,7 +91,17 @@ public class Dashboard extends AppCompatActivity
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment,fir).commit();
 
+
+/*        tv_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Login Successful",
+                        Toast.LENGTH_LONG).show();
+            }
+        });*/
+
     }
+
 
     @Override
     public void onBackPressed() {

@@ -8,7 +8,7 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Guest</string>
+    <string name="nav_header_title">Log in</string>
 
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -18,5 +18,7 @@
     <string name="new_tab">Newest Tab</string>
     <string name="pop_tab">Popular Tab</string>
     <string name="up_tab">Upcoming Tab</string>
+    <string name="login">Log in with email</string>
+    <string name="signup">Sign up with email</string>
 
 </resources>
