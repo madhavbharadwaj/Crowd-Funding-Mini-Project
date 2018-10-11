@@ -21,4 +21,11 @@
     <string name="login">Log in with email</string>
     <string name="signup">Sign up with email</string>
 
+    <string name="hint_email"> Email Address</string>
+    <string name="hint_password"> Password</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="f_pwd">Forgot your password?</string>
+    <string name="btn_fpw">Reset my password</string>
+    <string name="hint_name">Name</string>
+    <string name="btn_signup">Sign Up</string>
 </resources>

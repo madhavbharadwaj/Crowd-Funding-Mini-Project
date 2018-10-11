@@ -17,7 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Home.Dashboard" />
-        <activity android:name=".login_signup.RegLogActivity"></activity>
+        <activity android:name=".login_signup.RegLogActivity" />
+        <activity android:name=".login_signup.LoginScreen" />
+        <activity android:name=".login_signup.ForgotPassword" />
+        <activity android:name=".login_signup.SignUp"></activity>
     </application>
 
 </manifest>
