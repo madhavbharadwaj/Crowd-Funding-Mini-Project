@@ -20,6 +20,7 @@
     <string name="up_tab">Upcoming Tab</string>
     <string name="login">Log in with email</string>
     <string name="signup">Sign up with email</string>
+    <string name="Logout">Logout</string>
 
     <string name="hint_email"> Email Address</string>
     <string name="hint_password"> Password</string>

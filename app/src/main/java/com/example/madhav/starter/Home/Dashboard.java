@@ -1,6 +1,7 @@
 package com.example.madhav.starter.Home;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -26,7 +27,11 @@ import com.example.madhav.starter.Home.categories.popular;
 import com.example.madhav.starter.Home.categories.upcoming;
 import com.example.madhav.starter.R;
 import com.example.madhav.starter.Splash_Screen.LaunchScreenActivity;
+import com.example.madhav.starter.login_signup.LoginScreen;
 import com.example.madhav.starter.login_signup.RegLogActivity;
+import com.example.madhav.starter.login_signup.SaveSharedPreference;
+import com.example.madhav.starter.login_signup.PreferencesUtility;
+import com.example.madhav.starter.login_signup.profile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,17 +71,52 @@ public class Dashboard extends AppCompatActivity
 
 
         View headerView = navigationView.getHeaderView(0);
-        TextView navUsername = (TextView) headerView.findViewById(R.id.login);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.nlogintext);
        // navUsername.setText("Your Text Here");
+
+        if(SaveSharedPreference.getLoggedStatus(getApplicationContext())) {
+            /*Toast.makeText(Dashboard.this, "Already Logged in",
+                    Toast.LENGTH_LONG).show();*/
+            SharedPreferences prefs = getApplicationContext().getSharedPreferences("email_pref",MODE_PRIVATE);
+            String restoredText = prefs.getString("email", null);
+            String name="";
+            if (restoredText != null) {
+                name = prefs.getString("email", "No name defined");//"No name defined" is the default value.
+            }
+
+
+            navUsername.setText(name);
+             //Intent intent = new Intent(Dashboard.this, profile.class);
+
+            // b1.setVisibility(View.GONE);
+            //startActivity(intent);
+            // finish();
+
+
+           /* RegLogActivity.b1
+                    .setVisibility(View.GONE);*/
+        }
         navUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /*Toast.makeText(getApplicationContext(), "Login Successful",
                         Toast.LENGTH_LONG).show();*/
 
+                if (SaveSharedPreference.getLoggedStatus(getApplicationContext())) {
+                    Intent intent = new Intent(Dashboard.this, profile.class);
+
+
+                    startActivity(intent);
+                     finish();
+
+                } else {
+
+
 
                 Intent intent = new Intent(Dashboard.this, RegLogActivity.class);
                 startActivity(intent);
+                    finish();
+                }
             }
         });
 
@@ -101,6 +141,8 @@ public class Dashboard extends AppCompatActivity
         });*/
 
     }
+
+
 
 
     @Override

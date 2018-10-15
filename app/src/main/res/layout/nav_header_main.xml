@@ -28,7 +28,7 @@
             app:srcCompat="@drawable/ic_account_circle" />
 
         <TextView
-            android:id="@+id/login"
+            android:id="@+id/nlogintext"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:paddingTop="14dp"
