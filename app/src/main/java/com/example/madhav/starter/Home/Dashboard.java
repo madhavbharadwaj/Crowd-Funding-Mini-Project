@@ -70,6 +70,7 @@ public class Dashboard extends AppCompatActivity
         setTitle("All Projects");
 
 
+
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.nlogintext);
        // navUsername.setText("Your Text Here");
@@ -86,15 +87,7 @@ public class Dashboard extends AppCompatActivity
 
 
             navUsername.setText(name);
-             //Intent intent = new Intent(Dashboard.this, profile.class);
 
-            // b1.setVisibility(View.GONE);
-            //startActivity(intent);
-            // finish();
-
-
-           /* RegLogActivity.b1
-                    .setVisibility(View.GONE);*/
         }
         navUsername.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -42,4 +42,13 @@ public class SignUp extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(SignUp.this, RegLogActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 }

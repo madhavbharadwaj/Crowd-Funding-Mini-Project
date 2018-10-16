@@ -191,13 +191,17 @@ public class LoginScreen extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
 
 
+
+                        GetToken();
+                     //   getTip();
                         SharedPreferences.Editor editor = getSharedPreferences("email_pref", MODE_PRIVATE).edit();
                         editor.putString("email", emailText.getText().toString());
-
                         editor.apply();
 
 
-                        GetToken();
+
+
+
                         emailText.setText("");
                         pwText.setText("");
                         emailText.requestFocus();
@@ -237,6 +241,72 @@ public class LoginScreen extends AppCompatActivity {
         VolleySingleton.getInstance(this).addToRequestQueue(postRequest);
     }
 
+    private void getTip() {
+
+        SharedPreferences prefs = this.getSharedPreferences("email_pref",MODE_PRIVATE);
+        String restoredText = prefs.getString("email", null);
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                mAPI.EDIT_URL + restoredText,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Do something with response
+                        //mTextView.setText(response.toString());
+
+                        // Process the JSON
+                        try{
+                            // Get the JSON array
+
+                            // JSONArray array = response.getJSONArray("ADDRESS");
+                            String scT = response.get("username").toString();
+                            Log.d("test", scT);
+                            // Loop through the array elements
+                           /* for(int i=0;i<array.length();i++){
+                                // Get current json object
+                                JSONObject student = array.getJSONObject(i);
+                                //Log.d("test", String.valueOf(response.get("count")));
+                                // Get the current student (json object) data
+                                String hea_tip = student.getString("ADDRESS");
+                                String Quotes = '"'+ hea_tip+'"';
+                                //String lastName = student.getString("type");
+                                // String age = student.getString("age");
+
+                                // Display the formatted json data in text view
+                                //mTextView.append(firstName +" " + lastName +"\nage : " + age);
+                                // mTextView.append("\n\n");
+                               // tipP.setText(response.get("count") + Quotes);
+                                tipP.setText(Quotes);
+                               /*Intent n = new Intent(LoginScreenActivity.this, HomeActivity.class);
+                               n.putExtra("puttip",Quotes);
+
+                               startActivity(n);
+
+
+                            }*/
+                          //  tipP.setText(scT);
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){
+                        // Do something when error occurred
+                        Log.d("Error.Response", String.valueOf(error));
+                    }
+                }
+        );
+
+        // Add JsonObjectRequest to the RequestQueue
+        // requestQueue.add(jsonObjectRequest);
+        VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
+    }
+
 
     private void GetToken() {
         SharedPreferences prefs = this.getSharedPreferences("email_pref",MODE_PRIVATE);
@@ -264,6 +334,7 @@ public class LoginScreen extends AppCompatActivity {
                                 //Log.d("test", String.valueOf(response.get("count")));
                                 // Get the current student (json object) data
                                 String login_token = student.getString("tokky");
+                                //String username_token = student.getString("username");
                                 //Log.d("token = ",login_token);
                                 //String Quotes = '"'+ hea_tip+'"';
                                 //String lastName = student.getString("type");
@@ -274,6 +345,12 @@ public class LoginScreen extends AppCompatActivity {
                                 editor.putString("tokky",login_token);
                                 editor.apply();
 
+
+                               /* Log.d("username = ",username_token);
+                                SharedPreferences.Editor editor1 = getSharedPreferences("username_pref", MODE_PRIVATE).edit();
+                                editor1.putString("username",username_token);
+                                editor1.apply();
+*/
                                 // Display the formatted json data in text view
                                 //mTextView.append(firstName +" " + lastName +"\nage : " + age);
                                 // mTextView.append("\n\n");
