@@ -14,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,22 +23,33 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.madhav.starter.Home.categories.newest;
 import com.example.madhav.starter.Home.categories.popular;
 import com.example.madhav.starter.Home.categories.upcoming;
 import com.example.madhav.starter.R;
 import com.example.madhav.starter.Splash_Screen.LaunchScreenActivity;
+import com.example.madhav.starter.controller.VolleySingleton;
 import com.example.madhav.starter.login_signup.LoginScreen;
 import com.example.madhav.starter.login_signup.RegLogActivity;
 import com.example.madhav.starter.login_signup.SaveSharedPreference;
 import com.example.madhav.starter.login_signup.PreferencesUtility;
 import com.example.madhav.starter.login_signup.profile;
+import com.example.madhav.starter.network.mAPI;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
+
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -61,6 +73,10 @@ public class Dashboard extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        final TextView navUsername = (TextView) headerView.findViewById(R.id.nlogintext);
+        navUsername.setText("Log in");
+
         navigationView.setNavigationItemSelectedListener(this);
         all_projects fir = new all_projects();
 
@@ -68,34 +84,41 @@ public class Dashboard extends AppCompatActivity
 
 
         setTitle("All Projects");
+       // GetUser();
 
 
 
-        View headerView = navigationView.getHeaderView(0);
-        TextView navUsername = (TextView) headerView.findViewById(R.id.nlogintext);
-       // navUsername.setText("Your Text Here");
 
         if(SaveSharedPreference.getLoggedStatus(getApplicationContext())) {
+            GetUser();
             /*Toast.makeText(Dashboard.this, "Already Logged in",
                     Toast.LENGTH_LONG).show();*/
             SharedPreferences prefs = getApplicationContext().getSharedPreferences("email_pref",MODE_PRIVATE);
             String restoredText = prefs.getString("email", null);
-            String name="";
+            String name1="";
             if (restoredText != null) {
-                name = prefs.getString("email", "No name defined");//"No name defined" is the default value.
+                name1 = prefs.getString("email", "No name defined");//"No name defined" is the default value.
             }
 
 
-            navUsername.setText(name);
+            //navUsername = (TextView) headerView.findViewById(R.id.nlogintext);
+            navUsername.setText(name1);
+
+
+            //navUsername.setText(name1);
 
         }
         navUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 /*Toast.makeText(getApplicationContext(), "Login Successful",
                         Toast.LENGTH_LONG).show();*/
 
                 if (SaveSharedPreference.getLoggedStatus(getApplicationContext())) {
+
+
+                    //navUsername.setVisibility(View.VISIBLE);
                     Intent intent = new Intent(Dashboard.this, profile.class);
 
 
@@ -103,7 +126,7 @@ public class Dashboard extends AppCompatActivity
                      finish();
 
                 } else {
-
+                  // GetUser();
 
 
                 Intent intent = new Intent(Dashboard.this, RegLogActivity.class);
@@ -236,5 +259,83 @@ public class Dashboard extends AppCompatActivity
             return mFragmentTitleList.get(position);
         }
     }
+
+
+    private void GetUser() {
+        SharedPreferences prefs = this.getSharedPreferences("email_pref",MODE_PRIVATE);
+        String restoredText = prefs.getString("email", null);
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                mAPI.EDIT_URL + restoredText,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Do something with response
+                        //mTextView.setText(response.toString());
+
+                        // Process the JSON
+                        try{
+                            // Get the JSON array
+                            JSONArray array = response.getJSONArray("user_details");
+                            // Loop through the array elements
+                            for(int i=0;i<array.length();i++){
+                                // Get current json object
+                                JSONObject student = array.getJSONObject(i);
+                                //Log.d("test", String.valueOf(response.get("count")));
+                                // Get the current student (json object) data
+                                String usn_token = student.getString("username");
+                                //String username_token = student.getString("username");
+                                //Log.d("token = ",login_token);
+                                //String Quotes = '"'+ hea_tip+'"';
+                                //String lastName = student.getString("type");
+                                // String age = student.getString("age");
+
+
+                                SharedPreferences.Editor editor = getSharedPreferences("usn_pref", MODE_PRIVATE).edit();
+                                editor.putString("username",usn_token);
+                                editor.apply();
+
+
+                                Log.d("usn_token : ", usn_token);
+
+                               /* Log.d("username = ",username_token);
+                                SharedPreferences.Editor editor1 = getSharedPreferences("username_pref", MODE_PRIVATE).edit();
+                                editor1.putString("username",username_token);
+                                editor1.apply();
+*/
+                                // Display the formatted json data in text view
+                                //mTextView.append(firstName +" " + lastName +"\nage : " + age);
+                                // mTextView.append("\n\n");
+                                // tipP.setText(response.get("count") + Quotes);
+                                //tipP.setText(Quotes);
+                               /*Intent n = new Intent(LoginScreenActivity.this, HomeActivity.class);
+                               n.putExtra("puttip",Quotes);
+
+                               startActivity(n);*/
+
+
+                            }
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){
+                        // Do something when error occurred
+                        Log.d("Error.Response", String.valueOf(error));
+                    }
+                }
+        );
+
+        // Add JsonObjectRequest to the RequestQueue
+        // requestQueue.add(jsonObjectRequest);
+        VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
+    }
+
 
 }

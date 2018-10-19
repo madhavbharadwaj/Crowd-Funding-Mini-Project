@@ -76,7 +76,10 @@ public class profile extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Dashboard.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-
+        SharedPreferences preferences = getSharedPreferences("usn_pref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.commit();
 
 
         LogOutToken();
