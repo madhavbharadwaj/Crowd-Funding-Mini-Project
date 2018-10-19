@@ -167,9 +167,16 @@ public class Dashboard extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+          //  super.onBackPressed();
+            moveTaskToBack(true);
         }
     }
+ /* @Override
+  public void onBackPressed() {
+
+  }*/
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
