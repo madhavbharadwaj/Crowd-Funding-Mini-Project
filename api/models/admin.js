@@ -13,8 +13,8 @@ var minuteFromNow = function(){
   };
 
 
-//STUDENT REQUIREMENTS
-const studentSchema = mongoose.Schema({
+//ADMIN REQUIREMENTS
+const adminSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
 
 
@@ -35,8 +35,6 @@ const studentSchema = mongoose.Schema({
     middlename: { type: String, required: false },
     lastname: { type: String, required: false },
     password: { type: String, required: false },
-    github: { type: String, required: true },
-    usn: { type: String, required: true},
     
 
     //ADDITIONAL
@@ -49,8 +47,8 @@ const studentSchema = mongoose.Schema({
 
 
 
-studentSchema.methods.comparePassword = function(password) {
+adminSchema.methods.comparePassword = function(password) {
     return bcrypt.compareSync(password, this.hash_password);
   };
   
-module.exports = mongoose.model('Student', studentSchema);
+module.exports = mongoose.model('Admin', adminSchema);

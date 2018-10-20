@@ -6,10 +6,8 @@ const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken");
 
 
-
-const aadminRoutes = require("./api/routes/aadminroutes");
-//const userRoutes = require("./api/routes/userroutes");
-const studentRoutes = require("./api/routes/studentroutes");
+const adminRoutes = require("./api/routes/adminroutes")
+const studentRoutes = require("./api/routes/studentroutes")
 
 mongoose.connect('mongodb://crowdsource:Crowdsource96@ds123513.mlab.com:23513/crowdsource',{ useNewUrlParser: true } );
 
@@ -32,9 +30,10 @@ app.use((req, res, next) => {
 });
 mongoose.set('useCreateIndex', true)
 
-app.use("/aadmin", aadminRoutes);
-//app.use("/user", userRoutes);
-app.use("/student", studentRoutes);
+
+
+app.use("/admin",adminRoutes)
+app.use("/student",studentRoutes)
 
 app.use((req, res, next) => {
   const error = new Error("Not found");

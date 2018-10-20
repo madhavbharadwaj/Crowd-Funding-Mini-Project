@@ -4,7 +4,7 @@ const body = require("body-parser");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const Student = require("../models/student");
+const Admin = require("../models/admin");
 const async = require("async");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
@@ -37,36 +37,34 @@ var minuteFromNow = function(){
 };
 
 
-//API TO ADD STUDENT PROFILE
+//API TO ADD ADMIN PROFILE
 
 router.post("/signup", (req, res, next) => {
  
-  Student.find({ email: req.body.email })
+  Admin.find({ email: req.body.email })
   .exec()
-  .then(student => {
-    if (student.length >= 1) {
+  .then(admin => {
+    if (admin.length >= 1) {
       return res.status(409).json({
         message: "Mail exists"
       });
     } else 
     {
        
-          const student = new Student({
+          const admin = new Admin({
             _id: new mongoose.Types.ObjectId(),
             email: req.body.email,
             mobile:req.body.mobile,
             username:req.body.username,
             firstname: req.body.firstname,
             middlename: req.body.middlename,
-            lastname: req.body.lastname,
-            github :req.body.github,
-            usn :req.body.usn
+            lastname: req.body.lastname
           });
-         // student.password = bcrypt.hashSync(req.body.password, 10);
-          student.save()
+         // admin.password = bcrypt.hashSync(req.body.password, 10);
+          admin.save()
           .then(result => {
             console.log(result),
-            Student.updateOne({email:req.body.email},{$set : { creation_time : minuteFromNow()}},function(err) {
+            Admin.updateOne({email:req.body.email},{$set : { creation_time : minuteFromNow()}},function(err) {
                 if(err) 
                 {
                    throw err;
@@ -74,35 +72,35 @@ router.post("/signup", (req, res, next) => {
                } )
                async.waterfall([
                 function(done) {
-                  Student.findOne({
+                  Admin.findOne({
                     email: req.body.email
-                  }).exec(function(err, student) {
-                    if (student) {
-                      done(err, student);
+                  }).exec(function(err, admin) {
+                    if (admin) {
+                      done(err, admin);
                     } else {
                       done('TRAINER not found.');
                     }
                   });
                 },
-                function(student, done) {
+                function(admin, done) {
                   // create the random token
                   crypto.randomBytes(20, function(err, buffer) {
                     const token = buffer.toString('hex');
-                    done(err, student, token);
+                    done(err, admin, token);
                   });
                 },
-                function(student, token, done) {
-                  Student.findByIdAndUpdate({ _id: student._id }, { reset_password_token: token, reset_password_expires: Date.now() + 86400000 }, { upsert: true, new: true }).exec(function(err, new_student) {
-                    done(err, token, new_student);
+                function(admin, token, done) {
+                  Admin.findByIdAndUpdate({ _id: admin._id }, { reset_password_token: token, reset_password_expires: Date.now() + 86400000 }, { upsert: true, new: true }).exec(function(err, new_admin) {
+                    done(err, token, new_admin);
                   });
                 },
-                function(token, student, done) {
+                function(token, admin, done) {
                   var data = {
-                    to: student.email,
+                    to: admin.email,
                     from: email,
                     subject: 'CROWD SOURCE SET PASSWORD ',
                     text: 'Click the below link to set password\n\n' +
-                    'http://' + req.headers.host + '/student/reset?token=' + token + '\n\n'
+                    'http://' + req.headers.host + '/admin/reset?token=' + token + '\n\n'
                   };
                   
                   smtpTransport.sendMail(data, function(err) {
@@ -117,7 +115,7 @@ router.post("/signup", (req, res, next) => {
                 return res.status(422).json({ message: err });
               });
             res.status(201).json({
-              message: "STUDENT PROFILE CREATED, MAIL HAS BEEN SENT TO REGISTERED ACCOUNT TO SET PASSWORD"
+              message: "ADMIN PROFILE CREATED, MAIL HAS BEEN SENT TO REGISTERED ACCOUNT TO SET PASSWORD"
             });
           })
           .catch(err => {
@@ -132,18 +130,18 @@ router.post("/signup", (req, res, next) => {
 
 
 
-//API TO LOGIN STUDENT PROFILE
+//API TO LOGIN ADMIN PROFILE
 
 router.post("/login", (req, res, next) => {
-  Student.find({ email: req.body.email })
+  Admin.find({ email: req.body.email })
   .exec()
-  .then(student => {
-    if (student.length < 1) {
+  .then(admin => {
+    if (admin.length < 1) {
       return res.status(401).json({
         message: "Auth failed"
       });
     }
-    bcrypt.compare(req.body.password, student[0].password, (err, result) => {
+    bcrypt.compare(req.body.password, admin[0].password, (err, result) => {
       if (err) {
         return res.status(401).json({
           message: "Auth failed"
@@ -154,8 +152,8 @@ router.post("/login", (req, res, next) => {
         const success_token = jwt.sign
         (
           {
-            email: student[0].email,
-            student: student[0]._id
+            email: admin[0].email,
+            admin: admin[0]._id
           },
          process.env.JWT_KEY,
           {
@@ -164,7 +162,7 @@ router.post("/login", (req, res, next) => {
         );
          
         if (result) {
-          Student.updateOne({email:req.body.email},{$set : { lastLogin : minuteFromNow()}},function(err) {
+          Admin.updateOne({email:req.body.email},{$set : { lastLogin : minuteFromNow()}},function(err) {
               if(err) 
               {
                  throw err;
@@ -172,7 +170,7 @@ router.post("/login", (req, res, next) => {
              } )
             
 
-             Student.updateOne({email:req.body.email},{tokky:success_token},function(err) {
+             Admin.updateOne({email:req.body.email},{tokky:success_token},function(err) {
               if(err) 
               {
                  throw err;
@@ -203,19 +201,19 @@ router.post("/login", (req, res, next) => {
 
 
 
-//API TO EDIT STUDENT PROFILE (passing email)
+//API TO EDIT ADMIN PROFILE (passing email)
 
-router.put("/email/:studentEmail", (req, res, next) => {
-  const email = req.params.studentEmail; 
-  Student.updateOne({email}, req.body)
+router.put("/email/:adminEmail", (req, res, next) => {
+  const email = req.params.adminEmail; 
+  Admin.updateOne({email}, req.body)
     .exec()
     .then(result =>{
       console.log(result);
       res.status(200).json({
-          message: 'Student details updated',
+          message: 'Admin details updated',
           request: {
               type: 'GET',
-              url: 'http://localhost:3000/student/email/'+ email
+              url: 'http://localhost:3000/admin/email/'+ email
           }
       });
     })
@@ -229,27 +227,27 @@ router.put("/email/:studentEmail", (req, res, next) => {
 
 
 
-//API TO GET PARTICULAR STUDENT PROFILE DETAILS (passing email)
+//API TO GET PARTICULAR ADMIN PROFILE DETAILS (passing email)
 
-router.get("/email/:studentEmail", (req, res, next) => {
-  const email = req.params.studentEmail;
-  Student.find({email})
-    .select('_id email username firstname middlename lastname mobile github usn creation_time lastLogin')
+router.get("/email/:adminEmail", (req, res, next) => {
+  const email = req.params.adminEmail;
+  Admin.find({email})
+    .select('_id email username firstname middlename lastname mobile creation_time lastLogin')
     .exec()
     .then(doc => {
       console.log("From database", doc);
       if (doc) {
         res.status(200).json({
-            Student_details: doc,
+            Admin_details: doc,
             request: {
                 type: 'GET',
-                url: 'http://localhost:3000/student/email'
+                url: 'http://localhost:3000/admin/email'
             }
         });
       } else {
         res
           .status(404)
-          .json({ message: "No student found for provided ID" });
+          .json({ message: "No admin found for provided ID" });
       }
     })
     .catch(err => {
@@ -260,21 +258,21 @@ router.get("/email/:studentEmail", (req, res, next) => {
 
 
 
-//API TO GET ALL STUDENT PROFILE DETAILS
+//API TO GET ALL ADMIN PROFILE DETAILS
 
 router.get("/", (req, res, next) => {
-    Student.find()
- .select("_id email username firstname middlename lastname mobile github usn creation_time lastLogin")
+    Admin.find()
+ .select("_id email username firstname middlename lastname mobile creation_time lastLogin")
   .exec()
   .then(docs => {
     const response = {
       count: docs.length,
-      student: docs.map(doc => {
+      admin: docs.map(doc => {
         return {
-            Student_details: doc,
+            Admin_details: doc,
           request: {
             type: "GET",
-            url: "http://localhost:3000/student/"+ doc._id   
+            url: "http://localhost:3000/admin/"+ doc._id   
           }
         };
       })
@@ -296,16 +294,16 @@ router.get("/", (req, res, next) => {
 //LOGOUT (DESTROY TOKEN)
 
 router.get('/logout/:success_token', function(req, res) {
-  Student.findOne
+  Admin.findOne
   ({
   tokky: req.params.success_token
   })
-.exec(function(err, student) {
-  if (!err &&student)
+.exec(function(err, admin) {
+  if (!err &&admin)
    {      
-      student.tokky = undefined;
+      admin.tokky = undefined;
       
-student.save(function(err) {
+admin.save(function(err) {
         if (err) {
           return res.status(422).send({
             message: err
@@ -327,18 +325,18 @@ student.save(function(err) {
 
 
 
-//API TO DELETE STUDENT PROFILE(passing email)
+//API TO DELETE ADMIN PROFILE(passing email)
 
-router.delete("/delete/:studentEmail", (req, res, next) => {
-  const email = req.params.studentEmail;
-  Student.remove({email})
+router.delete("/delete/:adminEmail", (req, res, next) => {
+  const email = req.params.adminEmail;
+  Admin.remove({email})
     .exec()
     .then(result => {
       res.status(200).json({
-          message: 'Student deleted',
+          message: 'Admin deleted',
           request: {
               type: 'DELETE',
-              url: 'http://localhost:3000/student',
+              url: 'http://localhost:3000/admin',
               
           }
       });
@@ -370,36 +368,36 @@ const smtpTransport = nodemailer.createTransport({
 router.post("/forgot", (req, res, next) => {
   async.waterfall([
     function(done) {
-        Student.findOne({
+        Admin.findOne({
         email: req.body.email
-      }).exec(function(err, student) {
-        if (student) {
-          done(err, student);
+      }).exec(function(err, admin) {
+        if (admin) {
+          done(err, admin);
         } else {
-          done('student not found.');
+          done('admin not found.');
         }
       });
     },
-    function(student, done) {
+    function(admin, done) {
       // create the random token
       crypto.randomBytes(20, function(err, buffer) {
         const token = buffer.toString('hex');
-        done(err, student, token);
+        done(err, admin, token);
       });
     },
-    function(student, token, done) {
-        Student.findByIdAndUpdate({ _id: student._id }, { reset_password_token: token, reset_password_expires: Date.now() + 86400000 }, { upsert: true, new: true }).exec(function(err, new_student) {
-        done(err, token, new_student);
+    function(admin, token, done) {
+        Admin.findByIdAndUpdate({ _id: admin._id }, { reset_password_token: token, reset_password_expires: Date.now() + 86400000 }, { upsert: true, new: true }).exec(function(err, new_admin) {
+        done(err, token, new_admin);
       });
     },
-    function(token, student, done) {
+    function(token, admin, done) {
       
       var data = {
-        to: student.email,
+        to: admin.email,
         from: email,
         subject: 'CROWD SOURCE Password Reset',
         text: 'Click the below link to reset\n\n' +
-        'http://' + req.headers.host + '/student/reset?token=' + token + '\n\n'
+        'http://' + req.headers.host + '/admin/reset?token=' + token + '\n\n'
       };
       
      
@@ -425,34 +423,34 @@ router.post("/forgot", (req, res, next) => {
 //API TO RESET PASSWORD
 
 router.get('/reset', function(req, res) {
-  res.sendFile(path.resolve('./public/student.html'));
+  res.sendFile(path.resolve('./public/admin.html'));
   //server.use(express.static(path.join(__dirname, './static')));
 });
 
 router.post("/reset", (req, res, next) => {
-    Student.findOne({
+    Admin.findOne({
     reset_password_token: req.body.token,
     reset_password_expires: {
       $gt: Date.now()
     }
   }
 )
-  .exec(function(err, student) {
-    if (!err &&student) {
+  .exec(function(err, admin) {
+    if (!err &&admin) {
       
       if (req.body.newPassword === req.body.verifyPassword) {
         
-        student.password = bcrypt.hashSync(req.body.newPassword, 10);
-        student.reset_password_token = undefined;
-        student.reset_password_expires = undefined;
-        student.save(function(err) {
+        admin.password = bcrypt.hashSync(req.body.newPassword, 10);
+        admin.reset_password_token = undefined;
+        admin.reset_password_expires = undefined;
+        admin.save(function(err) {
           if (err) {
             return res.status(422).send({
               message: err
             });
           } else {
             var data = {
-              to: student.email,
+              to: admin.email,
               from: email,
           
               subject: 'Password Reset Confirmation',
