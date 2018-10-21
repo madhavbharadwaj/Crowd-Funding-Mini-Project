@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Student = require("../models/student");
 const Upload = require("../models/upload");
 
-//space inst hosp
+
 
 var minuteFromNow = function(){
     var d = new Date();
@@ -74,7 +74,7 @@ router.get("/", (req, res, next) => {
   .exec()
   .then(docs => {
     const response = {
-      count: docs.length,
+      TOTAL_NO_OF_PROJECTS_TO_BE_APPROVED: docs.length,
       COMPLETE_DETAILS: docs.map(doc => {
        return {
           id: doc._id,
@@ -110,7 +110,7 @@ router.get("/", (req, res, next) => {
 router.get("/category/:studentCategory", (req, res, next) => {
   category =req.params.studentCategory;
 Upload.find({category})
-  .select('email id title git_proj_link description domain category uplaod_time')
+  .select('email id title git_proj_link description domain category upload_time')
   .exec()
   .then(doc => {
     console.log("From database", doc);
@@ -125,7 +125,7 @@ Upload.find({category})
      else {
       res
         .status(404)
-        .json({ message: "No booking found for provided ID" });
+        .json({ message: "No projects found under provided the CATEGORY" });
     }
     
   })
@@ -144,7 +144,7 @@ Upload.find({category})
 router.get("/domain/:studentDomain", (req, res, next) => {
   domain =req.params.studentDomain;
 Upload.find({domain})
-  .select('email id title git_proj_link description domain category uplaod_time')
+  .select('email id title git_proj_link description domain category upload_time')
   .exec()
   .then(doc => {
     console.log("From database", doc);
@@ -159,7 +159,7 @@ Upload.find({domain})
      else {
       res
         .status(404)
-        .json({ message: "No booking found for provided ID" });
+        .json({ message: "No projects found under provided the DOMAIN" });
     }
     
   })
@@ -179,7 +179,7 @@ Upload.find({domain})
 router.get("/email/:studentEmail", (req, res, next) => {
   email =req.params.studentEmail;
   Upload.find({email})
-    .select('email id title git_proj_link description domain category uplaod_time')
+    .select('email id title git_proj_link description domain category upload_time')
     .exec()
     .then(doc => {
       console.log("From database", doc);
@@ -214,7 +214,7 @@ router.get("/recent/email/:userEmail", (req, res, next) => {
   email =req.params.userEmail;
   Upload.find({email}).sort({"upload_time": -1}).limit(1)
  
-    .select('email id title git_proj_link description domain category uplaod_time')
+    .select('email id title git_proj_link description domain category upload_time')
     .exec()
     .then(doc => {
       console.log("From database", doc);
@@ -228,7 +228,7 @@ router.get("/recent/email/:userEmail", (req, res, next) => {
        else {
         res
           .status(404)
-          .json({ message: "No booking found for provided email" });
+          .json({ message: "No recent projects found for provided email" });
       }
     })
     .catch(err => {
@@ -237,6 +237,35 @@ router.get("/recent/email/:userEmail", (req, res, next) => {
     });
  });
 
- 
+ //API TO DECLINE PROJECT (passing id)
+ //http://localhost:3000/upload/delete/
+
+
+router.delete("/delete/:uploadId", (req, res, next) => {
+  const _id = req.params.uploadId;
+  const message = req.body.message;
+  Upload.deleteOne({_id})
+    .exec()
+    .then(result => {
+      res.status(200).json({
+          status: 'project declined',
+          request:
+           {
+              type: 'DELETE',
+              url: 'http://localhost:3000/upload',
+              
+          }
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+    
+});
+
+
 
 module.exports = router;

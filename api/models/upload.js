@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 var minuteFromNow = function(){
     var d = new Date();
      d.setHours(d.getHours() + 5);
@@ -19,6 +18,7 @@ const uploadSchema = mongoose.Schema({
     description:{type: String,required:true},
     domain : {type: String,required:true},
     category : {type: String,required:true},
+    message : {type: String,required:false},
     upload_time : { type : String, default: minuteFromNow }
 });
 

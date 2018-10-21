@@ -80,7 +80,7 @@ router.post("/signup", (req, res, next) => {
                     if (student) {
                       done(err, student);
                     } else {
-                      done('TRAINER not found.');
+                      done('STUDENT not found.');
                     }
                   });
                 },
@@ -331,7 +331,7 @@ student.save(function(err) {
 
 router.delete("/delete/:studentEmail", (req, res, next) => {
   const email = req.params.studentEmail;
-  Student.remove({email})
+  Student.deleteOne({email})
     .exec()
     .then(result => {
       res.status(200).json({

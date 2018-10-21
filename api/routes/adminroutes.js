@@ -78,7 +78,7 @@ router.post("/signup", (req, res, next) => {
                     if (admin) {
                       done(err, admin);
                     } else {
-                      done('TRAINER not found.');
+                      done('ADMIN not found.');
                     }
                   });
                 },
@@ -329,7 +329,7 @@ admin.save(function(err) {
 
 router.delete("/delete/:adminEmail", (req, res, next) => {
   const email = req.params.adminEmail;
-  Admin.remove({email})
+  Admin.deleteOne({email})
     .exec()
     .then(result => {
       res.status(200).json({
