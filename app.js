@@ -9,6 +9,7 @@ const jwt = require("jsonwebtoken");
 const adminRoutes = require("./api/routes/adminroutes")
 const studentRoutes = require("./api/routes/studentroutes")
 const uploadRoutes = require("./api/routes/uploadroutes")
+const domainRoutes = require("./api/routes/domainroutes")
 
 mongoose.connect('mongodb://crowdsource:Crowdsource96@ds123513.mlab.com:23513/crowdsource',{ useNewUrlParser: true } );
 
@@ -36,6 +37,7 @@ mongoose.set('useCreateIndex', true)
 app.use("/admin",adminRoutes)
 app.use("/student",studentRoutes)
 app.use("/upload",uploadRoutes)
+app.use("/domain",domainRoutes)
 
 app.use((req, res, next) => {
   const error = new Error("Not found");
