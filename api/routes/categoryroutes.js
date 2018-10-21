@@ -30,4 +30,26 @@ router.post("/", (req, res, next) => {
       });
   });
 
+  //API TO GET ALL AVAILABLE CATEGORY
+
+router.get("/", (req, res, next) => {
+    Category.find()
+   .select("category")
+    .exec()
+    .then(docs => {
+      const response = {
+        TOTAL_NO_OF_CATEGORY: docs.length,
+        CATEGORY_DETAILS: docs
+         };
+      
+      res.status(200).json(response);
+      
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
   module.exports = router;
