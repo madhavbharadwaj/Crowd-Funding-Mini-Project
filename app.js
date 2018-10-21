@@ -10,6 +10,7 @@ const adminRoutes = require("./api/routes/adminroutes")
 const studentRoutes = require("./api/routes/studentroutes")
 const uploadRoutes = require("./api/routes/uploadroutes")
 const domainRoutes = require("./api/routes/domainroutes")
+const categoryRoutes = require("./api/routes/categoryroutes")
 
 mongoose.connect('mongodb://crowdsource:Crowdsource96@ds123513.mlab.com:23513/crowdsource',{ useNewUrlParser: true } );
 
@@ -38,6 +39,8 @@ app.use("/admin",adminRoutes)
 app.use("/student",studentRoutes)
 app.use("/upload",uploadRoutes)
 app.use("/domain",domainRoutes)
+app.use("/category",categoryRoutes)
+
 
 app.use((req, res, next) => {
   const error = new Error("Not found");
