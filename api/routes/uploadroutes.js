@@ -61,4 +61,43 @@ router.post("/project/email/:emailId", (req, res, next) => {
 });
 
 
+
+
+//to get all students projects yet to be approved 
+//http://localhost:3000/upload/
+
+
+router.get("/", (req, res, next) => {
+  Upload.find()
+  .select("email _id title git_proj_link description category domain upload_time ")
+  //.populate('email')
+  .exec()
+  .then(docs => {
+    const response = {
+      count: docs.length,
+      COMPLETE_DETAILS: docs.map(doc => {
+       return {
+          id: doc._id,
+          username:doc.username,
+          email:doc.email,
+          title :doc.title,
+          git_proj_link: doc.git_proj_link,
+          domain :doc.domain,
+          description: doc.description,
+          category:doc.category,
+          upload_time: doc.upload_time
+        };
+        
+      })
+    };
+    res.status(200).json(response);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+      error: err
+    });
+  });
+});
+
 module.exports = router;
