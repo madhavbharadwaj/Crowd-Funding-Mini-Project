@@ -207,4 +207,36 @@ router.get("/email/:studentEmail", (req, res, next) => {
 
 
 
+//to get particular students recently uploaded proj (by recent)
+//http://localhost:3000/upload/recent/email/
+
+router.get("/recent/email/:userEmail", (req, res, next) => {
+  email =req.params.userEmail;
+  Upload.find({email}).sort({"upload_time": -1}).limit(1)
+ 
+    .select('email id title git_proj_link description domain category uplaod_time')
+    .exec()
+    .then(doc => {
+      console.log("From database", doc);
+      if (doc) 
+      {
+        res.status(200).json({
+          STUDENT : email,
+          COMPLETE_DETAILS:doc
+        });
+      }
+       else {
+        res
+          .status(404)
+          .json({ message: "No booking found for provided email" });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: err });
+    });
+ });
+
+ 
+
 module.exports = router;
