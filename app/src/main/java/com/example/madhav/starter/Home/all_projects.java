@@ -1,6 +1,7 @@
 package com.example.madhav.starter.Home;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.madhav.starter.Home.categories.newest;
 import com.example.madhav.starter.Home.categories.popular;
@@ -33,7 +35,7 @@ public class all_projects extends Fragment {
 
 
 
-
+    Button b1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,7 +44,18 @@ public class all_projects extends Fragment {
 
 
 
+        b1 = v.findViewById(R.id.btn_add);
 
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), add_project.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+               getActivity(). finish();
+            }
+        });
         return v;
 
 

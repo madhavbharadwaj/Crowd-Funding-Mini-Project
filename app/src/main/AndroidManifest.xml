@@ -24,7 +24,8 @@
         <activity android:name=".login_signup.LoginScreen" />
         <activity android:name=".login_signup.ForgotPassword" />
         <activity android:name=".login_signup.SignUp" />
-        <activity android:name=".login_signup.profile"></activity>
+        <activity android:name=".login_signup.profile" />
+        <activity android:name=".Home.add_project"></activity>
     </application>
 
 </manifest>

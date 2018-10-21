@@ -168,6 +168,7 @@ public class LoginScreen extends AppCompatActivity {
         Intent intent = new Intent(LoginScreen.this, RegLogActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        finish();
     }
     private void login() {
         final mLogin mlog = new mLogin(emailText.getText().toString(),pwText.getText().toString());
