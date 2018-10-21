@@ -138,5 +138,39 @@ Upload.find({category})
 
 
 
+//to get all students projects yet to be approved based on DOMAIN (ai/ml/iot)
+//http://localhost:3000/upload/domain/
+
+router.get("/domain/:studentDomain", (req, res, next) => {
+  domain =req.params.studentDomain;
+Upload.find({domain})
+  .select('email id title git_proj_link description domain category uplaod_time')
+  .exec()
+  .then(doc => {
+    console.log("From database", doc);
+    if (doc) 
+    {
+      res.status(200).json({
+          PROJECT_DOMAIN : domain,
+          TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED_OF_DOMAIN: doc.length,
+          COMPLETE_DETAILS: doc
+      });
+    }
+     else {
+      res
+        .status(404)
+        .json({ message: "No booking found for provided ID" });
+    }
+    
+  })
+  .catch
+  (err => {
+    console.log(err);
+    res.status(500).json({ error: err });
+  });
+});
+
+
+
 
 module.exports = router;
