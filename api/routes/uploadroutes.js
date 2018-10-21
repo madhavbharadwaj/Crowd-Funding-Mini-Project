@@ -100,4 +100,43 @@ router.get("/", (req, res, next) => {
   });
 });
 
+
+
+
+
+//to get all students projects yet to be approved based on CATEGORY (icl/mca)
+//http://localhost:3000/upload/category/
+
+router.get("/category/:studentCategory", (req, res, next) => {
+  category =req.params.studentCategory;
+Upload.find({category})
+  .select('email id title git_proj_link description domain category uplaod_time')
+  .exec()
+  .then(doc => {
+    console.log("From database", doc);
+    if (doc) 
+    {
+      res.status(200).json({
+          PROJECT_CATEGORY : category,
+          TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED_OF_CATEGORY: doc.length,
+          COMPLETE_DETAILS: doc
+      });
+    }
+     else {
+      res
+        .status(404)
+        .json({ message: "No booking found for provided ID" });
+    }
+    
+  })
+  .catch
+  (err => {
+    console.log(err);
+    res.status(500).json({ error: err });
+  });
+});
+
+
+
+
 module.exports = router;
