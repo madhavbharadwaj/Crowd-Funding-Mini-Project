@@ -52,4 +52,29 @@ router.get("/", (req, res, next) => {
       });
     });
   });
+
+
+
+  //API TO DELETE CATEGORY 
+
+router.delete("/:categoryId", (req, res, next) => {
+    const id = req.params.categoryId;
+    Category.deleteOne({ _id: id })
+      .exec()
+      .then(result => {
+        res.status(200).json({
+            message: 'category deleted'
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  });
+  
+
+
+  
   module.exports = router;
