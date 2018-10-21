@@ -172,5 +172,39 @@ Upload.find({domain})
 
 
 
+//to get particular students all uploaded projects yet to be approved  (based on email)
+//http://localhost:3000/upload/email/
+
+
+router.get("/email/:studentEmail", (req, res, next) => {
+  email =req.params.studentEmail;
+  Upload.find({email})
+    .select('email id title git_proj_link description domain category uplaod_time')
+    .exec()
+    .then(doc => {
+      console.log("From database", doc);
+      if (doc) 
+      {
+        res.status(200).json({
+          STUDENT : email,
+          TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED: doc.length,
+          COMPLETE_DETAILS: doc
+        });
+      }
+       else {
+        res
+          .status(404)
+          .json({ message: "No projects found for provided email" });
+      }
+      
+    })
+    .catch
+    (err => {
+      console.log(err);
+      res.status(500).json({ error: err });
+    });
+});
+
+
 
 module.exports = router;
