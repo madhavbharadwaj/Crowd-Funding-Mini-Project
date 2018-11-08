@@ -18,25 +18,20 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.madhav.starter.Home.categories.newest;
-import com.example.madhav.starter.Home.categories.popular;
+import com.example.madhav.starter.Home.categories.explore;
 import com.example.madhav.starter.Home.categories.upcoming;
 import com.example.madhav.starter.R;
-import com.example.madhav.starter.Splash_Screen.LaunchScreenActivity;
 import com.example.madhav.starter.controller.VolleySingleton;
-import com.example.madhav.starter.login_signup.LoginScreen;
 import com.example.madhav.starter.login_signup.RegLogActivity;
 import com.example.madhav.starter.login_signup.SaveSharedPreference;
-import com.example.madhav.starter.login_signup.PreferencesUtility;
 import com.example.madhav.starter.login_signup.profile;
 import com.example.madhav.starter.network.mAPI;
 
@@ -232,8 +227,9 @@ public class Dashboard extends AppCompatActivity
     }
     private void addTabs(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFrag(new explore(), "EXPLORE");
         adapter.addFrag(new newest(), "NEWEST");
-        adapter.addFrag(new popular(), "POPULAR");
+
         adapter.addFrag(new upcoming(), "UPCOMING");
 
         viewPager.setAdapter(adapter);

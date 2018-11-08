@@ -12,18 +12,7 @@
         android:textAlignment="center"
         android:paddingTop="150dp"
         android:text="@string/allprojects" /> -->
-    <Button
-        android:id="@+id/btn_add"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:text="@string/btn_add"
-        android:textSize="18sp"
-        android:background="@drawable/my_button"
 
-        android:layout_marginTop="120dp"
-        />
 
 
 

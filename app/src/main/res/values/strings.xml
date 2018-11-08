@@ -30,4 +30,5 @@
     <string name="hint_name">Name</string>
     <string name="btn_signup">Sign Up</string>
     <string name="btn_add">Add Project</string>
+    <string name="exp_tab">Explore Tab</string>
 </resources>
