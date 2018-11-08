@@ -110,12 +110,12 @@ router.get("/pending", (req, res, next) => {
 
 
 
-//to get all students projects which are Approve [Approve projects]
-//http://localhost:3000/upload/approve
+//to get all students projects which are Approve [Approved projects]
+//http://localhost:3000/upload/approved
 
 
-router.get("/approve", (req, res, next) => {
-  const status = "Approve";
+router.get("/approved", (req, res, next) => {
+  const status = "approved";
   Upload.find({status})
   .select("email _id title git_proj_link description category domain upload_time status")
   //.populate('email')
@@ -311,13 +311,13 @@ router.get("/penstatus/:studentEmail", (req, res, next) => {
 
 /*MOBILE APPS*/ 
 
-//to get particular students all uploaded projects which are Approve 
+//to get particular students all uploaded projects which are Approved 
 //http://localhost:3000/upload/appstatus/
 
 
 router.get("/appstatus/:studentEmail", (req, res, next) => {
   email =req.params.studentEmail;
-  const status = "Approve";
+  const status = "approved";
   Upload.find({email,status})
     .select('email id title git_proj_link description domain category upload_time status')
     .exec()
@@ -346,12 +346,12 @@ router.get("/appstatus/:studentEmail", (req, res, next) => {
     });
 });
 
-//to get all students projects which are Approve based on category (ICL/MCA)
+//to get all students projects which are Approved based on category (ICL/MCA)
 //http://localhost:3000/upload/appcategory/
 
 router.get("/appcategory/:studentCategory", (req, res, next) => {
   category =req.params.studentCategory;
-  const status = "Approve";
+  const status = "approved";
   Upload.find({category,status})
   .select('email id title git_proj_link description domain category upload_time status')
   .exec()
@@ -416,14 +416,14 @@ router.get("/pencategory/:studentCategory", (req, res, next) => {
 
 
 
-//to get all students projects yet to be Approve based on DOMAIN 
+//to get all students projects yet to be Approved based on DOMAIN 
 //Artificial Intelligence (AI) Internet of Things (IoT) Enterprise Resource Planning (ERP) Machine Learning (ML)
 
 //http://localhost:3000/upload/appdomain/
 
 router.get("/appdomain/:studentDomain", (req, res, next) => {
   domain =req.params.studentDomain;
-  const status = "Approve";
+  const status = "approved";
   Upload.find({domain,status})
   .select('email id title git_proj_link description domain category upload_time status')
   .exec()
@@ -453,7 +453,7 @@ router.get("/appdomain/:studentDomain", (req, res, next) => {
 });
 
 
-//to get all students projects yet to be Approve based on DOMAIN 
+//to get all students projects yet to be Approved based on DOMAIN 
 //Artificial Intelligence (AI) Internet of Things (IoT) Enterprise Resource Planning (ERP) Machine Learning (ML)
 
 //http://localhost:3000/upload/pendomain/
@@ -488,4 +488,99 @@ router.get("/pendomain/:studentDomain", (req, res, next) => {
     res.status(500).json({ error: err });
   });
 });
+
+
+
+
+//NEWEST
+
+//to get all students projects which are Approved [Approved projects]
+//http://localhost:3000/upload/newapproved
+
+
+router.get("/newapproved", (req, res, next) => {
+  const status = "approved";
+  Upload.find({status}).sort({"upload_time": -1})
+  .select("email _id title git_proj_link description category domain upload_time status")
+  //.populate('email')
+  .exec()
+  .then(doc => {
+     console.log("From database", doc);
+      if (doc) 
+      {
+        res.status(200).json({
+            PROJECT_STATUS : status,
+            TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED: doc.length,
+            COMPLETE_DETAILS: doc
+        });
+      }
+       else {
+        res
+          .status(404)
+          .json({ message: "No projects found under provided the status" });
+      }
+      
+    })
+    .catch
+    (err => {
+      console.log(err);
+      res.status(500).json({ error: err });
+    });
+  });
+
+//NEWWEST 
+
+//to get all students projects which are Approved based on category newest (ICL/MCA)
+//http://localhost:3000/upload/newappcategory/
+
+router.get("/newappcategory/:studentCategory", (req, res, next) => {
+  category =req.params.studentCategory;
+  const status = "approved";
+  Upload.find({category,status}).sort({"upload_time": -1})
+  .select('email id title git_proj_link description domain category upload_time status')
+  .exec()
+  .then(doc => {
+    console.log("From database", doc);
+    if (doc) 
+    {
+      res.status(200).json({
+          PROJECT_STATUS : status,
+          PROJECT_CATEGORY : category,
+          TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED_OF_CATEGORY: doc.length,
+          COMPLETE_DETAILS: doc
+      });
+    }
+     else {
+      res
+        .status(404)
+        .json({ message: "No projects found under provided the CATEGORY" });
+    }
+    
+  })
+  .catch
+  (err => {
+    console.log(err);
+    res.status(500).json({ error: err });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router;
