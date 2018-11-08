@@ -528,7 +528,7 @@ router.get("/newapproved", (req, res, next) => {
     });
   });
 
-//NEWWEST 
+//NEWEST 
 
 //to get all students projects which are Approved based on category newest (ICL/MCA)
 //http://localhost:3000/upload/newappcategory/
@@ -563,24 +563,5 @@ router.get("/newappcategory/:studentCategory", (req, res, next) => {
     res.status(500).json({ error: err });
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
