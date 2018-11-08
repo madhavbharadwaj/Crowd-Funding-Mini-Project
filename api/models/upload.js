@@ -18,9 +18,10 @@ const uploadSchema = mongoose.Schema({
     description:{type: String,required:true},
     domain : {type: String,required:true},
     category : {type: String,required:true},
-    message : {type: String,required:false},
-    upload_time : { type : String, default: minuteFromNow }
+    upload_time : { type : String, default: minuteFromNow },
+    status : { type : String, default: 'pending' },
 });
+
 
 module.exports = mongoose.model('Upload', uploadSchema);
 

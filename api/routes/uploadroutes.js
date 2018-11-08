@@ -3,8 +3,21 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Student = require("../models/student");
 const Upload = require("../models/upload");
+const async = require("async");
+const nodemailer = require("nodemailer");
+//env
+const dotenv = require("dotenv");
+
+email = process.env.MAILER_EMAIL_ID
+pass = process.env.MAILER_PASSWORD
 
 
+require('dotenv').config()
+
+jwt_key: process.env.JWT_KEY
+mailer_email_id :process.env.MAILER_EMAIL_ID
+mailer_password :process.env.MAILER_PASSWORD
+mailer_service_provider:process.env.MAILER_SERVICE_PROVIDER
 
 var minuteFromNow = function(){
     var d = new Date();
@@ -61,62 +74,327 @@ router.post("/project/email/:emailId", (req, res, next) => {
 });
 
 
+//to get all students projects yet to be Approve [pending projects]
+//http://localhost:3000/upload/pending/
 
-
-//to get all students projects yet to be approved 
-//http://localhost:3000/upload/
-
-
-router.get("/", (req, res, next) => {
-  Upload.find()
-  .select("email _id title git_proj_link description category domain upload_time ")
-  //.populate('email')
-  .exec()
-  .then(docs => {
-    const response = {
-      TOTAL_NO_OF_PROJECTS_TO_BE_APPROVED: docs.length,
-      COMPLETE_DETAILS: docs.map(doc => {
-       return {
-          id: doc._id,
-          username:doc.username,
-          email:doc.email,
-          title :doc.title,
-          git_proj_link: doc.git_proj_link,
-          domain :doc.domain,
-          description: doc.description,
-          category:doc.category,
-          upload_time: doc.upload_time
-        };
-        
-      })
-    };
-    res.status(200).json(response);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json({
-      error: err
+router.get("/pending", (req, res, next) => {
+  const status = "pending";
+  Upload.find({status})
+  
+    .select('email id title git_proj_link description domain category upload_time status')
+    .exec()
+    .then(doc => {
+      console.log("From database", doc);
+      if (doc) 
+      {
+        res.status(200).json({
+            PROJECT_STATUS : status,
+            TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED: doc.length,
+            COMPLETE_DETAILS: doc
+        });
+      }
+       else {
+        res
+          .status(404)
+          .json({ message: "No projects found under provided the status" });
+      }
+      
+    })
+    .catch
+    (err => {
+      console.log(err);
+      res.status(500).json({ error: err });
     });
   });
+  
+
+
+
+//to get all students projects which are Approve [Approve projects]
+//http://localhost:3000/upload/approve
+
+
+router.get("/approve", (req, res, next) => {
+  const status = "Approve";
+  Upload.find({status})
+  .select("email _id title git_proj_link description category domain upload_time status")
+  //.populate('email')
+  .exec()
+  .then(doc => {
+     console.log("From database", doc);
+      if (doc) 
+      {
+        res.status(200).json({
+            PROJECT_STATUS : status,
+            TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED: doc.length,
+            COMPLETE_DETAILS: doc
+        });
+      }
+       else {
+        res
+          .status(404)
+          .json({ message: "No projects found under provided the status" });
+      }
+      
+    })
+    .catch
+    (err => {
+      console.log(err);
+      res.status(500).json({ error: err });
+    });
+  });
+
+
+  //EMAIL CONFIGURATION
+
+const smtpTransport = nodemailer.createTransport({
+  service: process.env.MAILER_SERVICE_PROVIDER ,
+  auth: {
+    user: email,
+    pass: pass 
+  }
+});
+
+//API TO APPROVE PROJECT (passing email)
+
+router.put("/edit/:studentEmail", (req, res, next) => {
+  const email = req.params.studentEmail; 
+  Upload.updateOne({email}, req.body)
+    .exec()
+    .then(result =>{
+      console.log(result);
+      async.waterfall([
+        function(done) {
+          Upload.findOne({
+            email:  req.params.studentEmail
+          }).exec(function(err, upload) {
+            if (upload) {
+              done(err, upload);
+            } else {
+              done('student not found.');
+            }
+          });
+        },
+        function(upload, done) {
+          var data = {
+            to: upload.email,
+            from: email,
+            subject: 'CROWD SOURCE\n\n',
+            text: 'YOUR PROJECT HAS BEEN APPROVED\n\n' 
+           
+          };
+          
+          smtpTransport.sendMail(data, function(err) {
+            if (!err) {
+              return res.json({ message: 'Kindly check your email' });
+            } 
+            else 
+            {
+              return done(err);
+            }
+          });
+        }
+      ], function(err) 
+      {
+        return res.status(422).json({ message: err });
+      });
+    res.status(201).json({
+      message: "UPLOAD PROJECT SUCCESSFULL, MAIL HAS BEEN SENT TO PROFILE"
+    });
+  }).catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
 });
 
 
 
+ //API TO DECLINE PROJECT (passing id)
+ //http://localhost:3000/upload/delete/
 
 
-//to get all students projects yet to be approved based on CATEGORY (icl/mca)
-//http://localhost:3000/upload/category/
+ router.delete("/delete/:studentEmail", (req, res, next) => {
+  const email = req.params.studentEmail;
+ 
+  Upload.deleteOne({email})
+    .exec()
+    .then(result =>{
+      console.log(result);
+      async.waterfall([
+        function(done) {
+          Upload.findOne({
+            email:  req.params.studentEmail
+          }).exec(function(err, upload) {
+            if (upload) {
+              done(err, upload);
+            } else {
+              done('student not found.');
+            }
+          });
+        },
+        function(upload, done) {
+          var data = {
+            to: upload.email,
+            from: email,
+            subject: 'CROWD SOURCE\n\n',
+            text: 'YOUR PROJECT HAS BEEN DECLINED\n\n' 
+           
+          };
+          
+          smtpTransport.sendMail(data, function(err) {
+            if (!err) {
+              return res.json({ message: 'Kindly check your email' });
+            } 
+            else 
+            {
+              return done(err);
+            }
+          });
+        }
+      ], function(err) 
+      {
+        return res.status(422).json({ message: err });
+      });
+    res.status(201).json({
+      message: "DECLINED"
+    });
+  }).catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+    
+});
 
-router.get("/category/:studentCategory", (req, res, next) => {
+
+
+/*MOBILE APPS*/ 
+
+
+//to get particular students all uploaded projects yet to be Approve (PENDING)
+//http://localhost:3000/upload/penstatus/
+
+
+router.get("/penstatus/:studentEmail", (req, res, next) => {
+  email =req.params.studentEmail;
+  const status = "pending";
+  Upload.find({email,status})
+    .select('email id title git_proj_link description domain category upload_time status')
+    .exec()
+    .then(doc => {
+      console.log("From database", doc);
+      if (doc) 
+      {
+        res.status(200).json({
+          STUDENT : email,
+          PROJECT_STATUS : status,
+          TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED: doc.length,
+          COMPLETE_DETAILS: doc
+        });
+      }
+       else {
+        res
+          .status(404)
+          .json({ message: "No projects found for provided email" });
+      }
+      
+    })
+    .catch
+    (err => {
+      console.log(err);
+      res.status(500).json({ error: err });
+    });
+});
+
+/*MOBILE APPS*/ 
+
+//to get particular students all uploaded projects which are Approve 
+//http://localhost:3000/upload/appstatus/
+
+
+router.get("/appstatus/:studentEmail", (req, res, next) => {
+  email =req.params.studentEmail;
+  const status = "Approve";
+  Upload.find({email,status})
+    .select('email id title git_proj_link description domain category upload_time status')
+    .exec()
+    .then(doc => {
+      console.log("From database", doc);
+      if (doc) 
+      {
+        res.status(200).json({
+          STUDENT : email,
+          PROJECT_STATUS : status,
+          TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED: doc.length,
+          COMPLETE_DETAILS: doc
+        });
+      }
+       else {
+        res
+          .status(404)
+          .json({ message: "No projects found for provided email" });
+      }
+      
+    })
+    .catch
+    (err => {
+      console.log(err);
+      res.status(500).json({ error: err });
+    });
+});
+
+//to get all students projects which are Approve based on category (ICL/MCA)
+//http://localhost:3000/upload/appcategory/
+
+router.get("/appcategory/:studentCategory", (req, res, next) => {
   category =req.params.studentCategory;
-Upload.find({category})
-  .select('email id title git_proj_link description domain category upload_time')
+  const status = "Approve";
+  Upload.find({category,status})
+  .select('email id title git_proj_link description domain category upload_time status')
   .exec()
   .then(doc => {
     console.log("From database", doc);
     if (doc) 
     {
       res.status(200).json({
+          PROJECT_STATUS : status,
+          PROJECT_CATEGORY : category,
+          TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED_OF_CATEGORY: doc.length,
+          COMPLETE_DETAILS: doc
+      });
+    }
+     else {
+      res
+        .status(404)
+        .json({ message: "No projects found under provided the CATEGORY" });
+    }
+    
+  })
+  .catch
+  (err => {
+    console.log(err);
+    res.status(500).json({ error: err });
+  });
+});
+
+//to get all students which are pending based on category (ICL/MCA)
+//http://localhost:3000/upload/pencategory/
+
+router.get("/pencategory/:studentCategory", (req, res, next) => {
+  category =req.params.studentCategory;
+  const status = "pending";
+  Upload.find({category,status})
+  .select('email id title git_proj_link description domain category upload_time status')
+  .exec()
+  .then(doc => {
+    console.log("From database", doc);
+    if (doc) 
+    {
+      res.status(200).json({
+          PROJECT_STATUS : status,
           PROJECT_CATEGORY : category,
           TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED_OF_CATEGORY: doc.length,
           COMPLETE_DETAILS: doc
@@ -138,19 +416,23 @@ Upload.find({category})
 
 
 
-//to get all students projects yet to be approved based on DOMAIN (ai/ml/iot)
-//http://localhost:3000/upload/domain/
+//to get all students projects yet to be Approve based on DOMAIN 
+//Artificial Intelligence (AI) Internet of Things (IoT) Enterprise Resource Planning (ERP) Machine Learning (ML)
 
-router.get("/domain/:studentDomain", (req, res, next) => {
+//http://localhost:3000/upload/appdomain/
+
+router.get("/appdomain/:studentDomain", (req, res, next) => {
   domain =req.params.studentDomain;
-Upload.find({domain})
-  .select('email id title git_proj_link description domain category upload_time')
+  const status = "Approve";
+  Upload.find({domain,status})
+  .select('email id title git_proj_link description domain category upload_time status')
   .exec()
   .then(doc => {
     console.log("From database", doc);
     if (doc) 
     {
       res.status(200).json({
+          PROJECT_STATUS : status,
           PROJECT_DOMAIN : domain,
           TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED_OF_DOMAIN: doc.length,
           COMPLETE_DETAILS: doc
@@ -171,101 +453,39 @@ Upload.find({domain})
 });
 
 
+//to get all students projects yet to be Approve based on DOMAIN 
+//Artificial Intelligence (AI) Internet of Things (IoT) Enterprise Resource Planning (ERP) Machine Learning (ML)
 
-//to get particular students all uploaded projects yet to be approved  (based on email)
-//http://localhost:3000/upload/email/
+//http://localhost:3000/upload/pendomain/
 
-
-router.get("/email/:studentEmail", (req, res, next) => {
-  email =req.params.studentEmail;
-  Upload.find({email})
-    .select('email id title git_proj_link description domain category upload_time')
-    .exec()
-    .then(doc => {
-      console.log("From database", doc);
-      if (doc) 
-      {
-        res.status(200).json({
-          STUDENT : email,
-          TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED: doc.length,
-          COMPLETE_DETAILS: doc
-        });
-      }
-       else {
-        res
-          .status(404)
-          .json({ message: "No projects found for provided email" });
-      }
-      
-    })
-    .catch
-    (err => {
-      console.log(err);
-      res.status(500).json({ error: err });
-    });
-});
-
-
-
-//to get particular students recently uploaded proj (by recent)
-//http://localhost:3000/upload/recent/email/
-
-router.get("/recent/email/:userEmail", (req, res, next) => {
-  email =req.params.userEmail;
-  Upload.find({email}).sort({"upload_time": -1}).limit(1)
- 
-    .select('email id title git_proj_link description domain category upload_time')
-    .exec()
-    .then(doc => {
-      console.log("From database", doc);
-      if (doc) 
-      {
-        res.status(200).json({
-          STUDENT : email,
-          COMPLETE_DETAILS:doc
-        });
-      }
-       else {
-        res
-          .status(404)
-          .json({ message: "No recent projects found for provided email" });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({ error: err });
-    });
- });
-
- //API TO DECLINE PROJECT (passing id)
- //http://localhost:3000/upload/delete/
-
-
-router.delete("/delete/:uploadId", (req, res, next) => {
-  const _id = req.params.uploadId;
-  const message = req.body.message;
-  Upload.deleteOne({_id})
-    .exec()
-    .then(result => {
+router.get("/pendomain/:studentDomain", (req, res, next) => {
+  domain =req.params.studentDomain;
+  const status = "pending";
+  Upload.find({domain,status})
+  .select('email id title git_proj_link description domain category upload_time status')
+  .exec()
+  .then(doc => {
+    console.log("From database", doc);
+    if (doc) 
+    {
       res.status(200).json({
-          status: 'project declined',
-          request:
-           {
-              type: 'DELETE',
-              url: 'http://localhost:3000/upload',
-              
-          }
+          PROJECT_STATUS : status,
+          PROJECT_DOMAIN : domain,
+          TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED_OF_DOMAIN: doc.length,
+          COMPLETE_DETAILS: doc
       });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        error: err
-      });
-    });
+    }
+     else {
+      res
+        .status(404)
+        .json({ message: "No projects found under provided the DOMAIN" });
+    }
     
+  })
+  .catch
+  (err => {
+    console.log(err);
+    res.status(500).json({ error: err });
+  });
 });
-
-
-
 module.exports = router;
