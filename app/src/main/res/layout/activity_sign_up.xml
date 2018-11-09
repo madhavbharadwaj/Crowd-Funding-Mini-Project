@@ -22,26 +22,7 @@
         android:orientation="vertical"
         android:layout_gravity="center">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_name_su"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="25dp"
 
-
-           >
-
-            <EditText
-                android:id="@+id/input_name_su"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_name"
-                android:textColor="@color/colorAccent"
-                android:textSize="18sp"
-                />
-        </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_email"
@@ -64,6 +45,67 @@
                 android:inputType="textEmailAddress"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_usn_su"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="13dp"
+
+
+            >
+
+            <EditText
+                android:id="@+id/input_usn_su"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_usn"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_phone_su"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="13dp"
+
+
+            >
+
+            <EditText
+                android:id="@+id/input_phone_su"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_ph"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_glink_su"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="13dp"
+            >
+
+            <EditText
+                android:id="@+id/input_glink_su"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_glink"
+                android:linksClickable="true"
+                android:autoLink="web|email"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout

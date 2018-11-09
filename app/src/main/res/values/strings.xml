@@ -27,8 +27,11 @@
     <string name="btn_login">LOGIN</string>
     <string name="f_pwd">Forgot your password?</string>
     <string name="btn_fpw">Reset my password</string>
-    <string name="hint_name">Name</string>
+    <string name="hint_name">Username</string>
     <string name="btn_signup">Sign Up</string>
     <string name="btn_add">Add Project</string>
     <string name="exp_tab">Explore Tab</string>
+    <string name="hint_ph">Mobile Number</string>
+    <string name="hint_usn">USN</string>
+    <string name="hint_glink">Github Profile Link</string>
 </resources>
