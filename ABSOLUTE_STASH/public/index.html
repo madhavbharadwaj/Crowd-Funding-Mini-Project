@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <!-- CSS
+    ================================================== -->
+    
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!--MDL
+    ================================================== -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+   
+</head>
+
+<body id="top">
+
+    
+    <!-- home
+    ================================================== -->
+    <section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="images/hero-bg.jpg" data-natural-width=3000 data-natural-height=2000 data-position-y=center>
+
+        <div class="overlay"></div>
+        <div class="shadow-overlay"></div>
+
+        <div class="home-content">
+
+            <div class="row home-content__main">
+
+                <h3>BMS College of Engineering</h3>
+
+                <h1>
+                   Absolute Stash
+                </h1>
+
+                <div class="home-content__buttons">
+                    <a href="#contact" class="smoothscroll btn btn--stroke">
+                        START
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="home-content__line"></div>
+
+        </div> <!-- end home-content -->
+
+    </section> <!-- end s-home -->
+
+
+    
+    
+    
+
+
+    
+    <!-- contact
+    ================================================== -->
+    <section id="contact" class="s-contact">
+
+        <div class="overlay"></div>
+        <div class="contact__line"></div>
+
+        <div class="row contact-content" data-aos="fade-up">
+            
+            <div class="contact-primary">
+
+                <form name="contactForm" data-bind="submit: loginTrainer" id="contactForm" method="post" action="" validate>
+                    <fieldset>
+    
+                    
+                    <div class="form-field">
+                        <i class="material-icons prefix">lock_outline</i>
+                        <input for="icon_prefix" name="email" type="email" id="email" placeholder="Email Id" value="" required="" aria-required="true" class="full-width" data-bind="value: newTrainerLEmail">
+                    </div>
+                    <div class="form-field">
+                        <input name="password" type="password" id="password" placeholder="Password" value="" minlength="2" required="" aria-required="true" class="full-width" data-bind="value: newTrainerLPass">
+                    </div>
+                   
+                    <div class="form-field"><center>
+                        <button class=" btn--primary" type="submit">Submit</button>
+                        <button class=" btn--primary" type="reset">Cancel</button>
+                        <div class="submit-loader">
+                            <div class="text-loader">...</div>
+                            <div class="s-loader">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </center> 
+    
+                    </fieldset>
+                </form>
+
+                <!-- contact-warning -->
+                <div class="message-warning">
+                    Something went wrong. Please try again.
+                </div> 
+            
+                
+            </div> <!-- end contact-secondary -->
+
+        </div> <!-- end contact-content -->
+        <div class="go-top">
+            <a class="smoothscroll" title="Back to Top" href="#top"><i class="icon-arrow-up" aria-hidden="true"></i></a>
+        </div>
+
+    </section> <!-- end s-contact -->
+
+
+    <!-- footer
+    ================================================== -->
+   
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader">
+            <div class="line-scale-pulse-out">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.js"></script>
+    
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
+   
+
+
+</body>
+
+</html>
