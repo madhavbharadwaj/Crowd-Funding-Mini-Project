@@ -76,10 +76,10 @@ public class profile extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Dashboard.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        SharedPreferences preferences = getSharedPreferences("usn_pref", MODE_PRIVATE);
+        /*SharedPreferences preferences = getSharedPreferences("usn_pref", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
-        editor.commit();
+        editor.commit();*/
 
 
         LogOutToken();
@@ -91,7 +91,7 @@ public class profile extends AppCompatActivity {
     }
 
     private void LogOutToken() {
-        SharedPreferences prefs = getApplicationContext().getSharedPreferences("token_pref",MODE_PRIVATE);
+        SharedPreferences prefs = this.getSharedPreferences("token_pref",MODE_PRIVATE);
         String restoredText = prefs.getString("tokky", null);
 
 
@@ -121,7 +121,7 @@ public class profile extends AppCompatActivity {
 
         // Add JsonObjectRequest to the RequestQueue
         // requestQueue.add(jsonObjectRequest);
-        VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
+        VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }
 
     @Override

@@ -170,7 +170,7 @@ public class add_project extends AppCompatActivity {
                         String res="";
                         try{
                             // Get the JSON array
-                            JSONArray array = response.getJSONArray("user");
+                            JSONArray array = response.getJSONArray("student");
 
                             //JSONArray  onwardflights = array.getJSONArray("onwardflights");
                             // Loop through the array elements
@@ -180,7 +180,7 @@ public class add_project extends AppCompatActivity {
                                 JSONObject student = array.getJSONObject(i);
                                 //JSONObject tokenObj = new JSONObject(student); //change to this
                                 //res = student.optString("statusSeverityDescription", "");
-                                res= student.getString("user_details");
+                                res= student.getString("Student_details");
                                 JSONObject tokenObj = new JSONObject(res);
 
                                 String token = tokenObj.getString("email");

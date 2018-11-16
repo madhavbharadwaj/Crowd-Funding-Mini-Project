@@ -85,7 +85,7 @@ public class Dashboard extends AppCompatActivity
 
 
         if(SaveSharedPreference.getLoggedStatus(getApplicationContext())) {
-            GetUser();
+            //GetUser();
             /*Toast.makeText(Dashboard.this, "Already Logged in",
                     Toast.LENGTH_LONG).show();*/
             SharedPreferences prefs = getApplicationContext().getSharedPreferences("email_pref",MODE_PRIVATE);
@@ -282,7 +282,7 @@ public class Dashboard extends AppCompatActivity
                         // Process the JSON
                         try{
                             // Get the JSON array
-                            JSONArray array = response.getJSONArray("user_details");
+                            JSONArray array = response.getJSONArray("Student_details");
                             // Loop through the array elements
                             for(int i=0;i<array.length();i++){
                                 // Get current json object

@@ -34,7 +34,7 @@
 
             >
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/input_email_su"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,11 +58,32 @@
 
             >
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/input_usn_su"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_usn"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_username_su"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="13dp"
+
+
+            >
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/input_username_su"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_username"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 />
@@ -78,7 +99,7 @@
 
             >
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/input_phone_su"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,7 +117,7 @@
             android:layout_marginTop="13dp"
             >
 
-            <EditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/input_glink_su"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -108,30 +129,9 @@
                 />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="13dp"
 
-            >
 
-            <EditText
-                android:id="@+id/input_password_su"
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_password"
-                android:textColor="@color/colorAccent"
-                android:drawablePadding="10dp"
-                android:inputType="textPassword"
-
-                android:textSize="18sp" />
-        </android.support.design.widget.TextInputLayout>
-
-        <Button android:id="@+id/btn_login"
+        <Button android:id="@+id/btn_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -142,6 +142,23 @@
             android:background="@color/colorAccent"
             android:layout_marginTop="40dp"
             android:textColor="@android:color/white"/>
+
+        <TextView
+            android:id="@+id/su_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="15dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorAccent"
+            />
+        <ProgressBar
+            android:id="@+id/su_progB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:theme="@style/pAccent" />
 
     </LinearLayout>
 </RelativeLayout>

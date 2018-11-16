@@ -34,4 +34,5 @@
     <string name="hint_ph">Mobile Number</string>
     <string name="hint_usn">USN</string>
     <string name="hint_glink">Github Profile Link</string>
+    <string name="hint_username">Username</string>
 </resources>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -141,16 +142,12 @@ public class LoginScreen extends AppCompatActivity {
                     if(CheckInternet())
                     {
 
-                        if(!CheckEmail())
-                        {
-                            status.setText("Invalid Email ID");
 
-                        }
-                        else
                             new LoginLongOperation().execute("");
                     }
                     else
                     {
+                        status.setTextColor(Color.RED);
                         status.setText("No Internet Connection");
 
                     }
@@ -247,7 +244,7 @@ public class LoginScreen extends AppCompatActivity {
         VolleySingleton.getInstance(this).addToRequestQueue(postRequest);
     }
 
-    private void getTip() {
+    /*private void getTip() {
 
         SharedPreferences prefs = this.getSharedPreferences("email_pref",MODE_PRIVATE);
         String restoredText = prefs.getString("email", null);
@@ -292,7 +289,7 @@ public class LoginScreen extends AppCompatActivity {
                                startActivity(n);
 
 
-                            }*/
+                            }
                           //  tipP.setText(scT);
                         }catch (JSONException e){
                             e.printStackTrace();
@@ -312,7 +309,7 @@ public class LoginScreen extends AppCompatActivity {
         // requestQueue.add(jsonObjectRequest);
         VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
     }
-
+*/
 
     private void GetToken() {
 
@@ -333,7 +330,7 @@ public class LoginScreen extends AppCompatActivity {
                         // Process the JSON
                         try{
                             // Get the JSON array
-                            JSONArray array = response.getJSONArray("user_details");
+                            JSONArray array = response.getJSONArray("Student_details");
                             // Loop through the array elements
                             for(int i=0;i<array.length();i++){
                                 // Get current json object
@@ -464,18 +461,20 @@ public class LoginScreen extends AppCompatActivity {
         return connected;
     }
 
-    public boolean CheckEmail()
+    /*public boolean CheckEmail()
     {
         boolean valid = false;
         String email = emailText.getText().toString().trim();
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        //String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        //String emailPattern =  "^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(bmsce.ac)\.in$";
+
         if (email.matches(emailPattern))
             valid = true;
         else
             valid = false;
 
         return valid;
-    }
+    }*/
     private void GetUser() {
         SharedPreferences prefs = this.getSharedPreferences("email_pref",MODE_PRIVATE);
         String restoredText = prefs.getString("email", null);
