@@ -1,0 +1,20 @@
+
+
+.mdl-layout {
+  display: table-cell;
+  vertical-align: middle;
+   
+}
+
+
+.card-login {
+    width: 20%;
+    margin: 0 auto;
+}
+
+.card-header{
+    background-color: #37474F;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
