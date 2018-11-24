@@ -1,8 +1,11 @@
 package com.example.madhav.starter.Home;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -22,9 +25,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.madhav.starter.Home.categories.newest;
 import com.example.madhav.starter.Home.categories.explore;
 import com.example.madhav.starter.Home.categories.upcoming;
@@ -50,11 +56,16 @@ public class Dashboard extends AppCompatActivity
     private ViewPager viewPager;
     private LinearLayout tv_login;
 
-
+//   ProgressDialog dialog = ProgressDialog.show(getApplicationContext(), "","Loading..Wait.." , true);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
+
+
+
 
      //  tv_login = findViewById(R.id.ll);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -77,8 +88,6 @@ public class Dashboard extends AppCompatActivity
 
 
 
-
-        setTitle("All Projects");
        // GetUser();
 
 
@@ -101,8 +110,11 @@ public class Dashboard extends AppCompatActivity
 
 
             //navUsername.setText(name1);
+            // Show the ProgressDialog on this thread
+
 
         }
+
         navUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,8 +138,10 @@ public class Dashboard extends AppCompatActivity
 
                 Intent intent = new Intent(Dashboard.this, RegLogActivity.class);
                 startActivity(intent);
+
                     finish();
                 }
+
             }
         });
 
@@ -150,6 +164,7 @@ public class Dashboard extends AppCompatActivity
                         Toast.LENGTH_LONG).show();
             }
         });*/
+
 
     }
 
@@ -340,5 +355,63 @@ public class Dashboard extends AppCompatActivity
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }
 
+    private class BackgroundTask extends AsyncTask <Void, Void, Void> {
+        private ProgressDialog dialog;
+
+        public BackgroundTask(Dashboard activity) {
+            dialog = new ProgressDialog(activity);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setMessage("Loading. Please wait...");
+            dialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                // Instantiate the RequestQueue.
+                RequestQueue queue = Volley.newRequestQueue(Dashboard.this);
+                String url ="https://test-api-man.herokuapp.com/student/";
+
+// Request a string response from the provided URL.
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                // Display the first 500 characters of the response string.
+                               Log.d("Response is: ",response.substring(0,500));
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Response is:","That didn't work!");
+                    }
+                });
+
+// Add the request to the RequestQueue.
+                queue.add(stringRequest);
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+    }
+
+
+
+
 
 }
+

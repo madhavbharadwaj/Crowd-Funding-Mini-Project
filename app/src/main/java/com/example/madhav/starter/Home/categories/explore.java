@@ -8,9 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.madhav.starter.Home.add_project;
 import com.example.madhav.starter.R;
+import com.example.madhav.starter.login_signup.RegLogActivity;
+import com.example.madhav.starter.login_signup.SaveSharedPreference;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,10 +37,30 @@ public class explore extends Fragment {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), add_project.class);
+              /*  Intent intent = new Intent(getActivity(), add_project.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                getActivity(). finish();
+                getActivity(). finish();*/
+                if (SaveSharedPreference.getLoggedStatus(getActivity().getApplicationContext())) {
+
+
+                    //navUsername.setVisibility(View.VISIBLE);
+                    Intent intent = new Intent(getActivity(), add_project.class);
+
+
+                    startActivity(intent);
+                    getActivity().finish();
+
+                } else {
+                    // GetUser();
+
+                    Toast.makeText(getActivity(), "Please login to upload projects",
+                            Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), RegLogActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+
             }
         });
 

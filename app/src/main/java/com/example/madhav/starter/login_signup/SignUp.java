@@ -138,10 +138,16 @@ public class SignUp extends AppCompatActivity {
                         su_phone.setText("");
                         su_glink.setText("");
                         //ins.requestFocus();
-                        Toast.makeText(getApplicationContext(), "Account has been created successfully",
+                        /*Toast.makeText(getApplicationContext(), "Account has been created successfully",
                                 Toast.LENGTH_SHORT).show();
                         input_status_su.setTextColor(Color.GRAY);
-                        input_status_su.setText("Check your Mail and Set your Password");
+                        input_status_su.setText("Check your Mail and Set your Password");*/
+                        Toast.makeText(getApplicationContext(), "Check your Mail and Set your Password",
+                                Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(SignUp.this, LoginScreen.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
 
                         //getDialog().dismiss();
                     }

@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.madhav.starter.R;
+import com.example.madhav.starter.login_signup.RegLogActivity;
+import com.example.madhav.starter.login_signup.SaveSharedPreference;
+import com.example.madhav.starter.login_signup.profile;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,9 +35,34 @@ public class all_projects extends Fragment {
 
 
 
-       /* b1 = v.findViewById(R.id.btn_add);
 
 
+        b1 = v.findViewById(R.id.btn_add);
+/*        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (SaveSharedPreference.getLoggedStatus(getActivity().getApplicationContext())) {
+
+
+                    //navUsername.setVisibility(View.VISIBLE);
+                    Intent intent = new Intent(getActivity(), add_project.class);
+
+
+                    startActivity(intent);
+                    getActivity().finish();
+
+                } else {
+                    // GetUser();
+
+
+                    Intent intent = new Intent(getActivity(), RegLogActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+            }
+        });*/
+
+/*
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
