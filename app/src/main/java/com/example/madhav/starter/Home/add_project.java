@@ -29,6 +29,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.example.madhav.starter.Home.categories.upcoming;
 import com.example.madhav.starter.R;
 import com.example.madhav.starter.controller.VolleySingleton;
 import com.example.madhav.starter.login_signup.LoginScreen;
@@ -188,12 +189,12 @@ public class add_project extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                         input_status_su.setTextColor(Color.GRAY);
                         input_status_su.setText("Check your Mail and Set your Password");*/
-                        Toast.makeText(getApplicationContext(), "Project uploaded successfully",
+                        Toast.makeText(getApplicationContext(), "Project uploaded successfully.Please wait for the administrator to approve",
                                 Toast.LENGTH_LONG).show();
-                       /* Intent intent = new Intent(add_project.this, LoginScreen.class);
+                        Intent intent = new Intent(add_project.this, Dashboard.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
-                        finish();*/
+                        finish();
 
                         //getDialog().dismiss();
                     }

@@ -17,6 +17,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.madhav.starter.Home.Dashboard;
 import com.example.madhav.starter.R;
+import com.example.madhav.starter.network.mAPI;
 
 public class LaunchScreenActivity extends AppCompatActivity {
 
@@ -48,7 +49,7 @@ public class LaunchScreenActivity extends AppCompatActivity {
 
             try {
                 RequestQueue queue = Volley.newRequestQueue(LaunchScreenActivity.this);
-                String url ="https://test-api-man.herokuapp.com/student/";
+                String url = mAPI.USER_URL;
 
 // Request a string response from the provided URL.
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
