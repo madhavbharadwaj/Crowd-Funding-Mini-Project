@@ -1,6 +1,7 @@
 package com.example.madhav.starter.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -34,8 +35,14 @@ public class adapter_upcoming extends RecyclerView.Adapter<adapter_upcoming.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         upcomingItem upcomingItem = ui.get(i);
-        viewHolder.head.setText(upcomingItem.getHead());
-        viewHolder.desc.setText(upcomingItem.getDesc());
+        viewHolder.head_upc.setText("Title : " +upcomingItem.getHead_upcg());
+        viewHolder.desc_upc.setText("Description : " +upcomingItem.getDesc_upcg());
+
+        viewHolder.email_upc.setVisibility(View.GONE);
+        viewHolder.domain_upc.setVisibility(View.GONE);
+        viewHolder.category_upc.setVisibility(View.GONE);
+        viewHolder.tou_upc.setVisibility(View.GONE);
+        viewHolder.pgitlink_upc.setVisibility(View.GONE);
     }
 
     @Override
@@ -43,16 +50,47 @@ public class adapter_upcoming extends RecyclerView.Adapter<adapter_upcoming.View
         return ui.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        public TextView head;
-        public TextView desc;
+        public TextView head_upc;
+        public TextView desc_upc;
+
+        public TextView email_upc;
+        public TextView domain_upc;
+        public TextView category_upc;
+        public TextView tou_upc;
+        public TextView pgitlink_upc;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            head = (TextView) itemView.findViewById(R.id.head);
-            desc = (TextView) itemView.findViewById(R.id.des);
+            itemView.setOnClickListener(this);
+            head_upc = (TextView) itemView.findViewById(R.id.head_upc);
+            desc_upc = (TextView) itemView.findViewById(R.id.des_upc);
+            email_upc = (TextView) itemView.findViewById(R.id.email_upc);
+            domain_upc = (TextView) itemView.findViewById(R.id.domain_upc);
+            category_upc = (TextView) itemView.findViewById(R.id.category_upc);
+            tou_upc = (TextView) itemView.findViewById(R.id.tou_upc);
+            pgitlink_upc = (TextView) itemView.findViewById(R.id.pgitlink_upc);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int pos =getAdapterPosition();
+            upcomingItem upcomingItem = ui.get(pos);
+
+
+
+            Intent it = new Intent(context,desc.class);
+
+            it.putExtra("header",upcomingItem.getHead_upcg());
+            it.putExtra("description",upcomingItem.getDesc_upcg());
+            it.putExtra("email",upcomingItem.getEmail_upcg());
+            it.putExtra("domain",upcomingItem.getDomain_upcg());
+            it.putExtra("category",upcomingItem.getCategory_upcg());
+            it.putExtra("tou",upcomingItem.getTou_upcg());
+            it.putExtra("pgl",upcomingItem.getPro_git_link_upcg());
+            context.startActivity(it);
         }
     }
 }

@@ -29,6 +29,42 @@
 
                 android:layout_height="wrap_content"
                 />
+            <TextView
+                android:id="@+id/email_newest"
+                android:text="Email"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/domain_newest"
+                android:text="Domain"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/category_newest"
+                android:text="Category"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/tou_newest"
+                android:text="Time of Upload"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/pgitlink_newest"
+                android:text="Project Github Link"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                />
+
         </LinearLayout>
 
     </android.support.v7.widget.CardView>

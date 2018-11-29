@@ -1,6 +1,9 @@
 package com.example.madhav.starter.model;
 
+import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.madhav.starter.R;
 
@@ -44,8 +48,18 @@ public class adapter_newest extends RecyclerView.Adapter<adapter_newest.ViewHold
 
 
 
+
         viewHolder.head_newest.setText("Title : " + newestItem.getHead_new());
         viewHolder.desc_newest.setText("Description : "+ newestItem.getDesc_new());
+
+        viewHolder.email_newest.setVisibility(View.GONE);
+        viewHolder.domain_newest.setVisibility(View.GONE);
+        viewHolder.category_newest.setVisibility(View.GONE);
+        viewHolder.tou_newest.setVisibility(View.GONE);
+
+        viewHolder.pgitlink_newest.setVisibility(View.GONE);
+
+
 
 
 
@@ -56,16 +70,54 @@ public class adapter_newest extends RecyclerView.Adapter<adapter_newest.ViewHold
         return ui.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         public TextView head_newest;
         public TextView desc_newest;
 
+        public TextView email_newest;
+        public TextView domain_newest;
+        public TextView category_newest;
+        public TextView tou_newest;
+        public TextView pgitlink_newest;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             head_newest = (TextView) itemView.findViewById(R.id.head_newest);
             desc_newest = (TextView) itemView.findViewById(R.id.des_newest);
+            email_newest = (TextView) itemView.findViewById(R.id.email_newest);
+            domain_newest =(TextView) itemView.findViewById(R.id.domain_newest);
+            category_newest   =(TextView) itemView.findViewById(R.id.category_newest);
+            tou_newest = (TextView) itemView.findViewById(R.id.tou_newest);
+            pgitlink_newest =(TextView) itemView.findViewById(R.id.pgitlink_newest);
+
+
+
+        }
+
+        @Override
+        public void onClick(View view) {
+            int pos =getAdapterPosition();
+            newestItem newestItem = ui.get(pos);
+
+
+
+            Intent it = new Intent(context,desc.class);
+
+            it.putExtra("header",newestItem.getHead_new());
+            it.putExtra("description",newestItem.getDesc_new());
+            it.putExtra("email",newestItem.getEmail_new());
+            it.putExtra("domain",newestItem.getDomain_new());
+            it.putExtra("category",newestItem.getCategory_new());
+            it.putExtra("tou",newestItem.getTou_new());
+            it.putExtra("pgl",newestItem.getPro_git_link());
+            context.startActivity(it);
+           // Log.d("pos ", String.valueOf(newestItem));
+          //  head_newest = (TextView) itemView.findViewById(R.id.head_newest);
+
         }
     }
 }

@@ -103,7 +103,12 @@ public class newest extends Fragment {
                                 newestItem ui = new newestItem(
                                         //array1.getString("email"),
                                         student.getString("title"),
-                                        student.getString("description")
+                                        student.getString("description"),
+                                        student.getString("email"),
+                                        student.getString("domain"),
+                                        student.getString("category"),
+                                        student.getString("upload_time"),
+                                        student.getString("git_proj_link")
                                 );
                                 newestItems.add(ui);
                             }

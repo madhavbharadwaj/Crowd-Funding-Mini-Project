@@ -16,15 +16,50 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/head"
+                android:id="@+id/head_upc"
                 android:text="Heading"
                 android:layout_width="match_parent"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:layout_height="wrap_content"
                 />
             <TextView
-                android:id="@+id/des"
+                android:id="@+id/des_upc"
                 android:text="Description"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/email_upc"
+                android:text="Email"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/domain_upc"
+                android:text="Domain"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/category_upc"
+                android:text="Category"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/tou_upc"
+                android:text="Time of Upload"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/pgitlink_upc"
+                android:text="Project Github Link"
                 android:layout_width="match_parent"
 
                 android:layout_height="wrap_content"

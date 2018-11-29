@@ -25,7 +25,8 @@
         <activity android:name=".login_signup.ForgotPassword" />
         <activity android:name=".login_signup.SignUp" />
         <activity android:name=".login_signup.profile" />
-        <activity android:name=".Home.add_project"></activity>
+        <activity android:name=".Home.add_project" />
+        <activity android:name=".model.desc"></activity>
     </application>
 
 </manifest>

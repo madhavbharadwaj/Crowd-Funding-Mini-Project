@@ -155,7 +155,13 @@ public class upcoming extends Fragment {
                                 upcomingItem ui = new upcomingItem(
                                         //array1.getString("email"),
                                         student.getString("title"),
-                                        student.getString("description")
+                                        student.getString("description"),
+                                        student.getString("email"),
+                                        student.getString("domain"),
+                                        student.getString("category"),
+                                        student.getString("upload_time"),
+                                        student.getString("git_proj_link")
+
                                 );
                                 upcomingItems.add(ui);
                             }
