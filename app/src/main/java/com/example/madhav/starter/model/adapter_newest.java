@@ -16,7 +16,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.madhav.starter.Home.Dashboard;
 import com.example.madhav.starter.R;
+import com.example.madhav.starter.login_signup.RegLogActivity;
+import com.example.madhav.starter.login_signup.SaveSharedPreference;
+import com.example.madhav.starter.login_signup.profile;
 
 import java.util.List;
 
@@ -86,6 +90,7 @@ public class adapter_newest extends RecyclerView.Adapter<adapter_newest.ViewHold
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
+
             head_newest = (TextView) itemView.findViewById(R.id.head_newest);
             desc_newest = (TextView) itemView.findViewById(R.id.des_newest);
             email_newest = (TextView) itemView.findViewById(R.id.email_newest);
@@ -106,7 +111,7 @@ public class adapter_newest extends RecyclerView.Adapter<adapter_newest.ViewHold
 
 
             Intent it = new Intent(context,desc.class);
-
+/*
             it.putExtra("header",newestItem.getHead_new());
             it.putExtra("description",newestItem.getDesc_new());
             it.putExtra("email",newestItem.getEmail_new());
@@ -114,7 +119,27 @@ public class adapter_newest extends RecyclerView.Adapter<adapter_newest.ViewHold
             it.putExtra("category",newestItem.getCategory_new());
             it.putExtra("tou",newestItem.getTou_new());
             it.putExtra("pgl",newestItem.getPro_git_link());
-            context.startActivity(it);
+            context.startActivity(it);*/
+
+            if (SaveSharedPreference.getLoggedStatus(context.getApplicationContext())) {
+
+
+                it.putExtra("header",newestItem.getHead_new());
+                it.putExtra("description",newestItem.getDesc_new());
+                it.putExtra("email",newestItem.getEmail_new());
+                it.putExtra("domain",newestItem.getDomain_new());
+                it.putExtra("category",newestItem.getCategory_new());
+                it.putExtra("tou",newestItem.getTou_new());
+                it.putExtra("pgl",newestItem.getPro_git_link());
+                context.startActivity(it);
+
+            } else {
+                Toast.makeText(context.getApplicationContext(), "Please login to view project description",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+
+
            // Log.d("pos ", String.valueOf(newestItem));
           //  head_newest = (TextView) itemView.findViewById(R.id.head_newest);
 

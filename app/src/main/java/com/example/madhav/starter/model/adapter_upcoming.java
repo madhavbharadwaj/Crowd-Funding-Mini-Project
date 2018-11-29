@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.madhav.starter.R;
+import com.example.madhav.starter.login_signup.SaveSharedPreference;
 
 import java.util.List;
 
@@ -82,15 +84,22 @@ public class adapter_upcoming extends RecyclerView.Adapter<adapter_upcoming.View
 
 
             Intent it = new Intent(context,desc.class);
+            if (SaveSharedPreference.getLoggedStatus(context.getApplicationContext())) {
+                it.putExtra("header",upcomingItem.getHead_upcg());
+                it.putExtra("description",upcomingItem.getDesc_upcg());
+                it.putExtra("email",upcomingItem.getEmail_upcg());
+                it.putExtra("domain",upcomingItem.getDomain_upcg());
+                it.putExtra("category",upcomingItem.getCategory_upcg());
+                it.putExtra("tou",upcomingItem.getTou_upcg());
+                it.putExtra("pgl",upcomingItem.getPro_git_link_upcg());
+                context.startActivity(it);
+            }
+            else {
+                Toast.makeText(context.getApplicationContext(), "Please login to view project description",
+                        Toast.LENGTH_SHORT).show();
+            }
 
-            it.putExtra("header",upcomingItem.getHead_upcg());
-            it.putExtra("description",upcomingItem.getDesc_upcg());
-            it.putExtra("email",upcomingItem.getEmail_upcg());
-            it.putExtra("domain",upcomingItem.getDomain_upcg());
-            it.putExtra("category",upcomingItem.getCategory_upcg());
-            it.putExtra("tou",upcomingItem.getTou_upcg());
-            it.putExtra("pgl",upcomingItem.getPro_git_link_upcg());
-            context.startActivity(it);
+
         }
     }
 }
