@@ -52,8 +52,8 @@ public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    //private TabLayout tabLayout;
+   // private ViewPager viewPager;
     private LinearLayout tv_login;
 
 //   ProgressDialog dialog = ProgressDialog.show(getApplicationContext(), "","Loading..Wait.." , true);
@@ -85,7 +85,7 @@ public class Dashboard extends AppCompatActivity
 
         navigationView.setNavigationItemSelectedListener(this);
         all_projects fir = new all_projects();
-
+        setTitle("All Projects");
 
 
        // GetUser();
@@ -119,8 +119,6 @@ public class Dashboard extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                /*Toast.makeText(getApplicationContext(), "Login Successful",
-                        Toast.LENGTH_LONG).show();*/
 
                 if (SaveSharedPreference.getLoggedStatus(getApplicationContext())) {
 
@@ -145,25 +143,17 @@ public class Dashboard extends AppCompatActivity
             }
         });
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+       /* viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         addTabs(viewPager);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-        setupTabIcons();
+        setupTabIcons();*/
 
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment,fir).commit();
 
-
-/*        tv_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Login Successful",
-                        Toast.LENGTH_LONG).show();
-            }
-        });*/
 
 
     }
@@ -233,7 +223,7 @@ public class Dashboard extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+/*
     private void setupTabIcons() {
         tabLayout.getTabAt(0);
         tabLayout.getTabAt(1);
@@ -276,84 +266,10 @@ public class Dashboard extends AppCompatActivity
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
-    }
+    }*/
 
 
-    private void GetUser() {
-        SharedPreferences prefs = this.getSharedPreferences("email_pref",MODE_PRIVATE);
-        String restoredText = prefs.getString("email", null);
 
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.GET,
-                mAPI.EDIT_URL + restoredText,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // Do something with response
-                        //mTextView.setText(response.toString());
-
-                        // Process the JSON
-                        try{
-                            // Get the JSON array
-                            JSONArray array = response.getJSONArray("Student_details");
-                            // Loop through the array elements
-                            for(int i=0;i<array.length();i++){
-                                // Get current json object
-                                JSONObject student = array.getJSONObject(i);
-                                //Log.d("test", String.valueOf(response.get("count")));
-                                // Get the current student (json object) data
-                                String usn_token = student.getString("username");
-                                //String username_token = student.getString("username");
-                                //Log.d("token = ",login_token);
-                                //String Quotes = '"'+ hea_tip+'"';
-                                //String lastName = student.getString("type");
-                                // String age = student.getString("age");
-
-
-                                SharedPreferences.Editor editor = getSharedPreferences("usn_pref", MODE_PRIVATE).edit();
-                                editor.putString("username",usn_token);
-                                editor.apply();
-
-
-                                Log.d("usn_token : ", usn_token);
-
-                               /* Log.d("username = ",username_token);
-                                SharedPreferences.Editor editor1 = getSharedPreferences("username_pref", MODE_PRIVATE).edit();
-                                editor1.putString("username",username_token);
-                                editor1.apply();
-*/
-                                // Display the formatted json data in text view
-                                //mTextView.append(firstName +" " + lastName +"\nage : " + age);
-                                // mTextView.append("\n\n");
-                                // tipP.setText(response.get("count") + Quotes);
-                                //tipP.setText(Quotes);
-                               /*Intent n = new Intent(LoginScreenActivity.this, HomeActivity.class);
-                               n.putExtra("puttip",Quotes);
-
-                               startActivity(n);*/
-
-
-                            }
-                        }catch (JSONException e){
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener(){
-                    @Override
-                    public void onErrorResponse(VolleyError error){
-                        // Do something when error occurred
-                        Log.d("Error.Response", String.valueOf(error));
-                    }
-                }
-        );
-
-        // Add JsonObjectRequest to the RequestQueue
-        // requestQueue.add(jsonObjectRequest);
-        VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
-    }
 
     private class BackgroundTask extends AsyncTask <Void, Void, Void> {
         private ProgressDialog dialog;

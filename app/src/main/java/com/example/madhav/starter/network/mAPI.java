@@ -23,7 +23,9 @@ public class mAPI {
     //logout api (token destruction)
     public static String LOGOUT_URL =  "https://test-api-man.herokuapp.com/student/logout/";
 
-
     //pending projects api (upcoming tab)
     public static String PENDING_URL = "https://test-api-man.herokuapp.com/upload/pending";
+
+    //approved projects api (newest tab)
+    public static String APPROVED_URL = "https://test-api-man.herokuapp.com/upload/approved";
 }
