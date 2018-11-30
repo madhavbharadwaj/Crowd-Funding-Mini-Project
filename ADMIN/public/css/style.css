@@ -2221,7 +2221,7 @@
   margin-bottom: 40px; }
   .irs-demo .irs {
     margin-top: 15px; }
-
+  
 .right-sidebar .nav-tabs + .tab-content {
   padding: 0; }
 
@@ -2233,16 +2233,40 @@
 .right-sidebar #settings .setting-list {
   list-style: none;
   padding-left: 0;
-  margin-bottom: 20px; }
+  overflow-y: hidden; }
   .right-sidebar #settings .setting-list li {
-    padding: 15px;
+    border-bottom: 1px solid #eee;
+    padding: 10px 10px 4px 10px;
     position: relative;
-    border-top: 1px solid #eee; }
-    .right-sidebar #settings .setting-list li .switch {
-      position: absolute;
-      top: 15px;
-      right: 5px; }
-
+    cursor: pointer; }
+  .right-sidebar #settings .setting-list li .active {
+    background-color: #eee; }
+    .right-sidebar #settings .setting-list li .active:after {
+      font-family: 'Material Icons';
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        content: '\E876';
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .right-sidebar #settings .setting-list li :hover {
+      background-color: #eee;
+    }
+    .right-sidebar #settings .setting-list li div {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      border-radius: 3px;
+    }
+    .right-sidebar #settings .setting-list li span {
+      position: relative;
+      bottom: 7px;
+      left: 5px;
+    }
 .demo-choose-skin {
   list-style: none;
   padding-left: 0;
@@ -2276,6 +2300,45 @@
       position: relative;
       bottom: 7px;
       left: 5px; }
+/*DEPARTMENT RIGHTSIDE*/
+.demo-choose-skin1 {
+  list-style: none;
+  padding-left: 0;
+  overflow-y: hidden; }
+  .demo-choose-skin1 li {
+    border-bottom: 1px solid #eee;
+    padding: 10px 10px 4px 10px;
+    position: relative;
+    cursor: pointer; }
+    .demo-choose-skin1 li.active {
+      background-color: #eee; }
+      .demo-choose-skin1 li.active:after {
+        font-family: 'Material Icons';
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        content: '\E876';
+        font-size: 18px;
+        font-weight: bold; }
+    .demo-choose-skin1 li:hover {
+      background-color: #eee; }
+    .demo-choose-skin1 li div {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      border-radius: 3px; }
+    .demo-choose-skin1 li span {
+      position: relative;
+      bottom: 7px;
+      left: 5px; }
+
+
+
+
+/*==============================================*/
   .demo-choose-skin .red {
     background-color: #F44336; }
   .demo-choose-skin .pink {
@@ -3425,7 +3488,11 @@ section.content {
     -ms-border-radius: 0 !important;
     border-radius: 0 !important;
     padding: 5px 20px !important; }
+/* DYNAMICALLY ADDED DIV========================*/
+  .newdiv{
+    left: 100px;
 
+  }
 /* Checkbox & Radio ============================ */
 [type="checkbox"] + label {
   padding-left: 26px;

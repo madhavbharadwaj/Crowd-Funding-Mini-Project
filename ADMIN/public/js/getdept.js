@@ -1,7 +1,7 @@
 c=0;
-$('#deptc').click(function () {
+$('#domainc').click(function () {
     c++;
-   // alert("hi");
+    alert("hi");
         $.ajax({
             type: 'GET',
             

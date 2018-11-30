@@ -1,21 +1,20 @@
-
-function CategoryClass(data) {
+function DomainClass(data) {
     
-    this.category = ko.observable(data.category);
+    this.domain = ko.observable(data.domain);
     this.editable = ko.observable(false);
   }
   function viewModel(){
     var self = this;
-    self.cat= ko.observableArray([]);
-    self.newCategory = ko.observable();
+    self.dom= ko.observableArray([]);
+    self.newDomain = ko.observable();
   
-  self.addCat = function() {
+  self.addDom = function() {
     //console.log(username);
     $.ajax({
       type: 'POST',
-     url:"https://test-api-man.herokuapp.com/category",
+     url:"https://test-api-man.herokuapp.com/domain",
   
-      data: ko.toJS(new CategoryClass({ category: this.newCategory()})),
+      data: ko.toJS(new DomainClass({ domain: this.newDomain()})),
       success: function(data) {
         location.reload();
       },
