@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -43,7 +44,7 @@ public class newest extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<newestItem> newestItems;
-
+    private TextView app_count;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class newest extends Fragment {
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView_newest);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        app_count = v.findViewById(R.id.app_count);
 
         newestItems = new ArrayList<>();
         /*for(int i =0;i<=10;i++)
@@ -113,7 +114,7 @@ public class newest extends Fragment {
                                 newestItems.add(ui);
                             }
                             adapter = new adapter_newest(newestItems,getActivity());
-
+                            app_count.setText("Approved Projects : "+array.length());
                             recyclerView.setAdapter(adapter);
 
 

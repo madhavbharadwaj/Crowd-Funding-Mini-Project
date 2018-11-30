@@ -217,6 +217,13 @@ public class Dashboard extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.fragment,sec).commit();
 
         }
+        else if(id == R.id.nav_statistics)
+        {
+            setTitle("Analytics");
+            stats sec = new stats();
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment,sec).commit();
+        }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

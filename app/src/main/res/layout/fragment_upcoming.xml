@@ -11,12 +11,25 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="@string/up_tab" />-->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/pen_count"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textStyle="bold" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         >
     </android.support.v7.widget.RecyclerView>
-
+</LinearLayout>
 </FrameLayout>

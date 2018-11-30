@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -52,7 +53,7 @@ public class adapter_newest extends RecyclerView.Adapter<adapter_newest.ViewHold
 
 
 
-
+       // viewHolder.itemView.setBackgroundColor(Color.parseColor("#008080"));
         viewHolder.head_newest.setText("Title : " + newestItem.getHead_new());
         viewHolder.desc_newest.setText("Description : "+ newestItem.getDesc_new());
 
