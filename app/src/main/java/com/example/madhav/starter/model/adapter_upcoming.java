@@ -78,26 +78,9 @@ public class adapter_upcoming extends RecyclerView.Adapter<adapter_upcoming.View
 
         @Override
         public void onClick(View view) {
-            int pos =getAdapterPosition();
-            upcomingItem upcomingItem = ui.get(pos);
-
-
-
-            Intent it = new Intent(context,desc.class);
-            if (SaveSharedPreference.getLoggedStatus(context.getApplicationContext())) {
-                it.putExtra("header",upcomingItem.getHead_upcg());
-                it.putExtra("description",upcomingItem.getDesc_upcg());
-                it.putExtra("email",upcomingItem.getEmail_upcg());
-                it.putExtra("domain",upcomingItem.getDomain_upcg());
-                it.putExtra("category",upcomingItem.getCategory_upcg());
-                it.putExtra("tou",upcomingItem.getTou_upcg());
-                it.putExtra("pgl",upcomingItem.getPro_git_link_upcg());
-                context.startActivity(it);
-            }
-            else {
-                Toast.makeText(context.getApplicationContext(), "Please login to view project description",
+                Toast.makeText(context.getApplicationContext(), "Access Denied ! Only approved projects description can be viewed",
                         Toast.LENGTH_SHORT).show();
-            }
+
 
 
         }

@@ -44,7 +44,7 @@ public class upcoming extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<upcomingItem> upcomingItems;
-    private TextView pen_count;
+  //  private TextView pen_count;
 
 
     @Override
@@ -56,7 +56,8 @@ public class upcoming extends Fragment {
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        pen_count = v.findViewById(R.id.pen_count);
+
+       // pen_count = v.findViewById(R.id.pen_count);
 
         upcomingItems = new ArrayList<>();
         /*for(int i =0;i<=10;i++)
@@ -168,7 +169,7 @@ public class upcoming extends Fragment {
                                 upcomingItems.add(ui);
                             }
                             adapter = new adapter_upcoming(upcomingItems,getActivity());
-                            pen_count.setText("Pending Projects : "+array.length());
+                          //  pen_count.setText("Pending Projects : "+array.length());
                             recyclerView.setAdapter(adapter);
 
 

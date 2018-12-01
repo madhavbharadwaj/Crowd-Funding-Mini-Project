@@ -41,10 +41,10 @@ public class newest extends Fragment {
         // Required empty public constructor
     }
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private RecyclerView recyclerView_new;
+    private RecyclerView.Adapter adapter_new;
     private List<newestItem> newestItems;
-    private TextView app_count;
+    //private TextView app_count;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,10 +52,10 @@ public class newest extends Fragment {
         View v = inflater.inflate(R.layout.fragment_newest, container, false);
 
 
-        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView_newest);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        app_count = v.findViewById(R.id.app_count);
+        recyclerView_new = (RecyclerView) v.findViewById(R.id.recyclerView_newest);
+        recyclerView_new.setHasFixedSize(true);
+        recyclerView_new.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //app_count = v.findViewById(R.id.app_count);
 
         newestItems = new ArrayList<>();
         /*for(int i =0;i<=10;i++)
@@ -85,7 +85,7 @@ public class newest extends Fragment {
         progressDialog.show();
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
-                mAPI.APPROVED_URL,
+                mAPI.NEWEST_URL,
 
                 new Response.Listener<String>() {
                     @Override
@@ -113,9 +113,9 @@ public class newest extends Fragment {
                                 );
                                 newestItems.add(ui);
                             }
-                            adapter = new adapter_newest(newestItems,getActivity());
-                            app_count.setText("Approved Projects : "+array.length());
-                            recyclerView.setAdapter(adapter);
+                            adapter_new = new adapter_newest(newestItems,getActivity());
+                            //app_count.setText("Approved Projects : "+array.length());
+                            recyclerView_new.setAdapter(adapter_new);
 
 
 
