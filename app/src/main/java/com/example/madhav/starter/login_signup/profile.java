@@ -172,7 +172,7 @@ public class profile extends AppCompatActivity {
         SharedPreferences prefs = this.getSharedPreferences("email_pref",MODE_PRIVATE);
         String restoredText = prefs.getString("email", null);
 
-        Log.d("email",restoredText);
+        //Log.d("email",restoredText);
 
 
         StringRequest stringRequest = new StringRequest(
