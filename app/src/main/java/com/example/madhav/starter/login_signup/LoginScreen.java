@@ -1,6 +1,7 @@
 package com.example.madhav.starter.login_signup;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -143,7 +144,8 @@ public class LoginScreen extends AppCompatActivity {
                     {
 
 
-                            new LoginLongOperation().execute("");
+                          //  new LoginLongOperation().execute("");
+                        login();
                     }
                     else
                     {
@@ -168,6 +170,10 @@ public class LoginScreen extends AppCompatActivity {
         finish();
     }
     private void login() {
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Authenticating ...");
+        progressDialog.show();
         final mLogin mlog = new mLogin(emailText.getText().toString(),pwText.getText().toString());
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, mAPI.LOGIN_URL,
@@ -176,6 +182,7 @@ public class LoginScreen extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // response
+                        progressDialog.dismiss();
                         Log.d("Response", response);
 
                         //getTip();
@@ -219,12 +226,13 @@ public class LoginScreen extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
+                        progressDialog.dismiss();
                         Log.d("Error.Response", String.valueOf(error));
                         /*Toast.makeText(LoginScreenActivity.this, "Email or Password is Invalid",
                                 Toast.LENGTH_LONG).show();*/
                         status.setText("Email or Password is Invalid");
 
-                        pdia.setVisibility(View.GONE);
+                      //  pdia.setVisibility(View.GONE);
                     }
                 }
         )

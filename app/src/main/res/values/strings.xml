@@ -42,4 +42,5 @@
     <string name="hint_pu_category">Project Category</string>
     <string name="btn_upload">Upload</string>
     <string name="statstring">Analytics</string>
+    <string name="btn_save">SAVE</string>
 </resources>

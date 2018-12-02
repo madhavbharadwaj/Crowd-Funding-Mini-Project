@@ -1,6 +1,7 @@
 package com.example.madhav.starter.login_signup;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -59,8 +60,8 @@ public class SignUp extends AppCompatActivity {
         su_glink = findViewById(R.id.input_glink_su);
         signUP = findViewById(R.id.btn_signup);
         input_status_su = findViewById(R.id.su_status);
-        pdia_su = findViewById(R.id.su_progB);
-        pdia_su.setVisibility(View.GONE);
+       // pdia_su = findViewById(R.id.su_progB);
+       // pdia_su.setVisibility(View.GONE);
 
         signUP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,17 +69,19 @@ public class SignUp extends AppCompatActivity {
                 input_status_su.setText("");
                 if( TextUtils.isEmpty(su_email.getText()) || TextUtils.isEmpty(su_usn.getText()) || TextUtils.isEmpty(su_username.getText()) || TextUtils.isEmpty(su_phone.getText()) || TextUtils.isEmpty(su_glink.getText())) {
                     input_status_su.setText("Fields cannot be left blank");
-                    input_status_su.setTextColor(Color.RED);
+                   // input_status_su.setTextColor(Color.RED);
                 }
                 else
                 if(CheckInternet())
                 {
 
 
-                    new LongOperationSignup().execute();
+                  //  new LongOperationSignup().execute();
+                    register();
                 }
                 else
-                {input_status_su.setTextColor(Color.RED);
+                {
+                    //input_status_su.setTextColor(Color.RED);
                     input_status_su.setText("No Internet Connection");
 
                 }
@@ -123,6 +126,9 @@ public class SignUp extends AppCompatActivity {
         finish();
     }
     private void register() {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage(" Registering ...");
+        progressDialog.show();
         final mSignup msign = new mSignup(su_email.getText().toString(),su_usn.getText().toString(),su_phone.getText().toString(),su_glink.getText().toString(),su_username.getText().toString());
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, mAPI.SIGNUP_URL,
@@ -130,6 +136,7 @@ public class SignUp extends AppCompatActivity {
                 {
                     @Override
                     public void onResponse(String response) {
+                        progressDialog.dismiss();
                         // response
                         Log.d("Response", response);
                         su_email.setText("");
@@ -142,7 +149,7 @@ public class SignUp extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                         input_status_su.setTextColor(Color.GRAY);
                         input_status_su.setText("Check your Mail and Set your Password");*/
-                        Toast.makeText(getApplicationContext(), "Check your Mail and Set your Password",
+                        Toast.makeText(getApplicationContext(), "Check your mail and Set your password",
                                 Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(SignUp.this, LoginScreen.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -157,10 +164,11 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
+                        progressDialog.dismiss();
                         Log.d("Error.Response", String.valueOf(error));
                         input_status_su.setText("Email ID exists");
-                        input_status_su.setTextColor(Color.RED);
-                        pdia_su.setVisibility(View.GONE);
+                      //  input_status_su.setTextColor(Color.RED);
+                     //   pdia_su.setVisibility(View.GONE);
                     }
                 }
         )

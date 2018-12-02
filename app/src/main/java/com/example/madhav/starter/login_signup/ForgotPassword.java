@@ -1,5 +1,6 @@
 package com.example.madhav.starter.login_signup;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -57,7 +58,7 @@ public class ForgotPassword extends AppCompatActivity {
 
                 if( TextUtils.isEmpty(fp_email.getText())){
                     fp_status.setText("Email ID cannot be left blank");
-                    fp_status.setTextColor(Color.RED);
+                 //   fp_status.setTextColor(Color.RED);
                 }
                 else
                 {
@@ -65,7 +66,7 @@ public class ForgotPassword extends AppCompatActivity {
                     {
 
 
-                        new LongOperationForgot().execute("");
+                       fpw();
                     }
                     else
                     {
@@ -120,6 +121,9 @@ public class ForgotPassword extends AppCompatActivity {
         return connected;
     }
     private void fpw() {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Authenticating ...");
+        progressDialog.show();
         // final mLogin mlog = new mLogin(emailText.getText().toString(),pwText.getText().toString());
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, mAPI.FORGOT_URL,
@@ -127,6 +131,7 @@ public class ForgotPassword extends AppCompatActivity {
                 {
                     @Override
                     public void onResponse(String response) {
+                        progressDialog.dismiss();
                         // response
                         Log.d("Response", response);
                         Toast.makeText(getApplicationContext(), "Email has been sent successfully",
@@ -142,11 +147,12 @@ public class ForgotPassword extends AppCompatActivity {
                 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
                         // error
                         Log.d("Error.Response", String.valueOf(error));
-                        fp_status.setText("Email ID doesn't exist");
-                        fp_status.setTextColor(Color.RED);
-                        fp_pbar.setVisibility(View.GONE);
+                        fp_status.setText("Email address doesn't exist");
+                    //    fp_status.setTextColor(Color.RED);
+                       // fp_pbar.setVisibility(View.GONE);
                     }
                 }
         )

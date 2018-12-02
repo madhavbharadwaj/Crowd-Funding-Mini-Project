@@ -1,5 +1,6 @@
 package com.example.madhav.starter.Home;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -121,7 +122,7 @@ public class add_project extends AppCompatActivity {
                 input_status_pu.setText("");
 
                 if( TextUtils.isEmpty(pu_title.getText()) || TextUtils.isEmpty(pu_git_proj_link.getText()) || TextUtils.isEmpty(pu_description.getText()) || TextUtils.isEmpty(pu_domain.getText()) || TextUtils.isEmpty(pu_category.getText())) {
-                    input_status_pu.setTextColor(Color.RED);
+                    //input_status_pu.setTextColor(Color.RED);
                     input_status_pu.setText("Fields cannot be left blank");
 
                 }
@@ -130,12 +131,13 @@ public class add_project extends AppCompatActivity {
                 {
 
 
-                    new LongOperationUpload().execute();
+                    //new LongOperationUpload().execute();
+                    upload_project();
 
                 }
                 else
                 {
-                    input_status_pu.setTextColor(Color.RED);
+                    //input_status_pu.setTextColor(Color.RED);
                     input_status_pu.setText("No Internet Connection");
 
                 }
@@ -155,6 +157,10 @@ public class add_project extends AppCompatActivity {
     }
 
     private void upload_project() {
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Uploading ...");
+        progressDialog.show();
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("email_pref",MODE_PRIVATE);
         String restoredText = prefs.getString("email", null);
 
@@ -178,7 +184,8 @@ public class add_project extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        Log.d("Response", response);
+                        progressDialog.dismiss();
+                      //  Log.d("Response", response);
                         pu_title.setText("");
                         pu_git_proj_link.setText("");
                         pu_description.setText("");
@@ -204,11 +211,12 @@ public class add_project extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("Error.Response", String.valueOf(error));
-                        input_status_pu.setTextColor(Color.RED);
+                        progressDialog.dismiss();
+                        //Log.d("Error.Response", String.valueOf(error));
+                       // input_status_pu.setTextColor(Color.RED);
                         input_status_pu.setText("Error !");
 
-                        input_status_pu.setVisibility(View.GONE);
+                        //input_status_pu.setVisibility(View.GONE);
                     }
                 }
         )
