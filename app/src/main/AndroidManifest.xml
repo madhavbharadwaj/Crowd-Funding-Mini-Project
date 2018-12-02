@@ -27,7 +27,8 @@
         <activity android:name=".login_signup.profile" />
         <activity android:name=".Home.add_project" />
         <activity android:name=".model.desc" />
-        <activity android:name=".Home.visual_data"></activity>
+        <activity android:name=".Home.visual_data" />
+        <activity android:name=".login_signup.my_projects"></activity>
     </application>
 
 </manifest>

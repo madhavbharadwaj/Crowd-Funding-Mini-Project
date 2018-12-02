@@ -31,4 +31,10 @@ public class mAPI {
 
     //approved projects api (explore tab)
     public static String APPROVED_EXP_URL = "https://crowd-src.herokuapp.com/upload/approved";
+
+    // profile (my projects) approved count
+    public static String APP_COUNT_USER = "https://crowd-src.herokuapp.com/upload/appstatus/";
+
+    // profile (my projects) pending count
+    public static String PEND_COUNT_USER = "https://crowd-src.herokuapp.com/upload/appstatus/";
 }

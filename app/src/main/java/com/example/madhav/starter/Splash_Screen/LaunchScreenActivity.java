@@ -57,7 +57,7 @@ public class LaunchScreenActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 // Display the first 500 characters of the response string.
-                                Log.d("Response is: ",response.substring(0,500));
+                                Log.d("Response is: ",response);
                             }
                         }, new Response.ErrorListener() {
                     @Override
