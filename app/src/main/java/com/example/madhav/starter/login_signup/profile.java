@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import com.example.madhav.starter.network.mAPI;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 
 public class profile extends AppCompatActivity {
@@ -33,10 +35,13 @@ public class profile extends AppCompatActivity {
 
     TextView prof_appr_count;
     TextView prof_pend_count;
+
+    TextView editBT;
+
     CardView my_prof_card;
 
 
-    public static Button b3 ;
+    public static TextView b3 ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +51,7 @@ public class profile extends AppCompatActivity {
         prof_appr_count = findViewById(R.id.prof_appr_count);
         prof_pend_count = findViewById(R.id.prof_pend_count);
         my_prof_card = findViewById(R.id.my_prof_card);
+        editBT = findViewById(R.id.editBT);
         b3 = findViewById(R.id.button_logout);
 
 
