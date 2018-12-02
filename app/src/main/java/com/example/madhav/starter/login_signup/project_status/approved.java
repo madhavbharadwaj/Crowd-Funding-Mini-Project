@@ -87,7 +87,7 @@ public class approved extends Fragment {
 
         SharedPreferences prefs = getActivity().getSharedPreferences("email_pref",MODE_PRIVATE);
         String restoredText = prefs.getString("email", null);
-
+        Log.d("email",restoredText);
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
                 mAPI.APP_COUNT_USER + restoredText,

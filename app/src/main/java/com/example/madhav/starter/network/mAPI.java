@@ -36,5 +36,5 @@ public class mAPI {
     public static String APP_COUNT_USER = "https://crowd-src.herokuapp.com/upload/appstatus/";
 
     // profile (my projects) pending count
-    public static String PEND_COUNT_USER = "https://crowd-src.herokuapp.com/upload/appstatus/";
+    public static String PEND_COUNT_USER = "https://crowd-src.herokuapp.com/upload/penstatus/";
 }

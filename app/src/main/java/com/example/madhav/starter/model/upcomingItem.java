@@ -1,5 +1,10 @@
 package com.example.madhav.starter.model;
 
+
+/*
+ File for Categories -> UpComing
+
+ */
 public class upcomingItem {
   /*  private String head;
     private String desc;
