@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login_signup.my_projects">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar_mp"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/landing_text_color"
+        android:elevation="4dp"
+        android:backgroundTint="@color/colorAccent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:orientation="vertical"
+        >
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs_my_proj"
+            android:layout_width="match_parent"
+
+
+
+            android:layout_height="wrap_content"
+
+            app:tabGravity="fill"
+            app:tabMode="fixed"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager_my_proj"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
