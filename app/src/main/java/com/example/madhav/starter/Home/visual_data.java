@@ -64,6 +64,7 @@ public class visual_data extends AppCompatActivity {
 
 
         PieData data = new PieData(year, dataSet);
+        data.setValueTextSize(15f);
 
         pieChart.setData(data);
 
