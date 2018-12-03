@@ -123,6 +123,7 @@ public class ForgotPassword extends AppCompatActivity {
     private void fpw() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Authenticating ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         // final mLogin mlog = new mLogin(emailText.getText().toString(),pwText.getText().toString());
 

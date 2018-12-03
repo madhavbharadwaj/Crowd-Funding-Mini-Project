@@ -12,34 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.madhav.starter.R;
 import com.example.madhav.starter.controller.VolleySingleton;
-import com.example.madhav.starter.login_signup.SaveSharedPreference;
-import com.example.madhav.starter.model.adapter_explore;
-import com.example.madhav.starter.model.desc;
-import com.example.madhav.starter.model.exploreItem;
 import com.example.madhav.starter.network.mAPI;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.formatter.DefaultValueFormatter;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,9 +34,9 @@ public class stats extends Fragment {
     public stats() {
         // Required empty public constructor
     }
-    TextView exp_count;
-    TextView new_count;
-    TextView pend_count;
+    TextView app_count;
+    TextView upc_count;
+   // TextView total;
     CardView visual_rep;
     Button gPie;
 
@@ -62,21 +46,36 @@ public class stats extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+       // set_data d = new set_data();
         View v =  inflater.inflate(R.layout.fragment_stats, container, false);
-        exp_count = v.findViewById(R.id.exp_count);
+        //exp_count = v.findViewById(R.id.exp_count);
 
-        new_count = v.findViewById(R.id.new_count);
+        app_count = v.findViewById(R.id.app_count);
 
-        pend_count = v.findViewById(R.id.pend_count);
+        upc_count = v.findViewById(R.id.upc_count);
 
+        //total = v.findViewById(R.id.tot_count);
         visual_rep = v.findViewById(R.id.visual_rep);
         //gPie = v.findViewById(R.id.gPie);
 
+
+
+
         explore_count();
-        newest_count();
+        //newest_count();
         pending_count();
 
+       // Log.d("123",d.getApp_d());
 
+       // String x = dodata();
+
+        //d.getApp_d();
+
+        //        Log.d("123",d.getApp_d());
+
+
+
+        //add();
 
         visual_rep.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,11 +84,12 @@ public class stats extends Fragment {
                         Toast.LENGTH_SHORT).show();*/
 
                 Intent it = new Intent(getActivity(), visual_data.class);
+                //Log.d("123","test"+new_count.getText());
 
+                //it.putExtra("explore", exp_count.getText());
+                it.putExtra("approved", app_count.getText());
+                it.putExtra("upcoming", upc_count.getText());
 
-                it.putExtra("explore", exp_count.getText());
-                it.putExtra("newest", new_count.getText());
-                it.putExtra("pending", pend_count.getText());
                 startActivity(it);
 
             }
@@ -136,8 +136,10 @@ public class stats extends Fragment {
 
     private void explore_count()
     {
+
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading data...");
+        progressDialog.setMessage("Loading data ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
@@ -149,14 +151,19 @@ public class stats extends Fragment {
                         progressDialog.dismiss();
 
                         try{
+
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray array = jsonObject.getJSONArray("COMPLETE_DETAILS");
                             //Log.d("explore count", String.valueOf(array.length()));
 
                             String ec = String.valueOf(array.length());
-                            //send(array.length());
-                            exp_count.setText(ec);
 
+                           // d.setApp_d(ec);
+                            //Log.d("123",d.getApp_d());
+
+                            //send(array.length());
+                            app_count.setText(ec);
+                            //add();
                             // yvalues.add(new Entry(new_float, 1));
                             // yvalues.add(new Entry(pend_float, 2));
 
@@ -183,10 +190,12 @@ public class stats extends Fragment {
     }*/
 
 
-    private void newest_count()
+   /* private void newest_count()
     {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading data...");
+        progressDialog.setMessage("Loading data ...");
+        progressDialog.setCancelable(false);
+
         progressDialog.show();
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
@@ -218,12 +227,14 @@ public class stats extends Fragment {
                 }
         );
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
-    }
+    }*/
+
 
     private void pending_count()
     {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading data...");
+        progressDialog.setMessage("Loading data ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
@@ -241,7 +252,7 @@ public class stats extends Fragment {
 
                             String pc = String.valueOf(array.length());
 
-                            pend_count.setText(pc);
+                            upc_count.setText(pc);
 
 
                         }catch (JSONException e){

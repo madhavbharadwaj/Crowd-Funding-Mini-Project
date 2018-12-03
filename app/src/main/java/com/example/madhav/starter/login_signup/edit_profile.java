@@ -91,6 +91,7 @@ public class edit_profile extends AppCompatActivity {
     private void getData() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading Data ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
 
@@ -199,6 +200,7 @@ public class edit_profile extends AppCompatActivity {
     private void editProfile() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Updating ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         String edit_email = email_ep.getText().toString();
         //final mSignup msign = new mSignup(ins.getText().toString(),ies.getText().toString(),ips.getText().toString());

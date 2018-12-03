@@ -160,6 +160,7 @@ public class add_project extends AppCompatActivity {
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Uploading ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("email_pref",MODE_PRIVATE);
         String restoredText = prefs.getString("email", null);

@@ -81,7 +81,8 @@ public class newest extends Fragment {
     private void loadRecyclerViewData_newest()
     {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading data...");
+        progressDialog.setMessage("Loading data ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,

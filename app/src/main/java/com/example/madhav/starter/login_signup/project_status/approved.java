@@ -82,7 +82,8 @@ public class approved extends Fragment {
     private void loadRecyclerViewData_approved()
     {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading data...");
+        progressDialog.setMessage("Loading data ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
         SharedPreferences prefs = getActivity().getSharedPreferences("email_pref",MODE_PRIVATE);

@@ -137,7 +137,8 @@ public class upcoming extends Fragment {
     private void loadRecyclerViewData()
     {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading data...");
+        progressDialog.setMessage("Loading data ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,

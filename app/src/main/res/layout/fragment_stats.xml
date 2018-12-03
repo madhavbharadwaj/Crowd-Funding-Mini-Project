@@ -34,19 +34,10 @@
             android:layout_height="wrap_content"
 
             />
-        <TextView
-            android:id="@+id/tab_stat"
-            android:layout_width="wrap_content"
-            android:text="Tab Statistics"
-            android:layout_marginLeft="20dp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:layout_height="wrap_content"
 
-            />
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
 
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="10dp"
@@ -54,40 +45,15 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Explore "
-                 >
-            </TextView>
-            <TextView
-                android:id="@+id/exp_count"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-
-                android:layout_marginLeft="25dp"
-                android:layout_height="wrap_content"
-
-                />
-        </LinearLayout>
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-
-
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Newest "
+                android:text="Approved "
                 >
             </TextView>
             <TextView
-                android:id="@+id/new_count"
+                android:id="@+id/app_count"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
 
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="12dp"
                 android:layout_height="wrap_content"
 
                 />
@@ -103,15 +69,15 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Pending "
+                android:text="Upcoming "
                 >
             </TextView>
             <TextView
-                android:id="@+id/pend_count"
+                android:id="@+id/upc_count"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
 
-                android:layout_marginLeft="22dp"
+                android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content"
 
                 />

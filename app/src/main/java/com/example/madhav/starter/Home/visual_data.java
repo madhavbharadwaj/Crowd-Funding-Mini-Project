@@ -18,8 +18,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 
 public class visual_data extends AppCompatActivity {
-    int exp_value;
-    int new_value;
+   // int exp_value;
+    int app_value;
     int pen_value;
 
     @Override
@@ -47,27 +47,28 @@ public class visual_data extends AppCompatActivity {
         pieChart.setDescription("");
         ArrayList NoOfEmp = new ArrayList();
 
-        exp_value = Integer.parseInt(getIntent().getStringExtra("explore"));
-        new_value   = Integer.parseInt(getIntent().getStringExtra("newest"));
-        pen_value    =Integer.parseInt(getIntent().getStringExtra("pending"));
-        NoOfEmp.add(new Entry(exp_value, 0));
-        NoOfEmp.add(new Entry(new_value, 1));
+        //exp_value = Integer.parseInt(getIntent().getStringExtra("explore"));
+        app_value   = Integer.parseInt(getIntent().getStringExtra("approved"));
+        pen_value    =Integer.parseInt(getIntent().getStringExtra("upcoming"));
+        //NoOfEmp.add(new Entry(exp_value, 0));
+        NoOfEmp.add(new Entry(app_value, 1));
         NoOfEmp.add(new Entry(pen_value, 2));
 
         PieDataSet dataSet = new PieDataSet(NoOfEmp, "");
 
         ArrayList year = new ArrayList();
 
-        year.add("Explore");
-        year.add("Newest");
-        year.add("Pending");
+
+        year.add("Approved");
+        year.add("Upcoming");
 
 
         PieData data = new PieData(year, dataSet);
         data.setValueTextSize(15f);
 
-        pieChart.setData(data);
 
+        pieChart.setData(data);
+       pieChart.setTouchEnabled(false);
         dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
         pieChart.animateXY(3000, 3000);
 

@@ -127,7 +127,8 @@ public class SignUp extends AppCompatActivity {
     }
     private void register() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage(" Registering ...");
+        progressDialog.setMessage("Registering ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         final mSignup msign = new mSignup(su_email.getText().toString(),su_usn.getText().toString(),su_phone.getText().toString(),su_glink.getText().toString(),su_username.getText().toString());
 

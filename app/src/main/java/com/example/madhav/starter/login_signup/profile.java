@@ -185,7 +185,8 @@ public class profile extends AppCompatActivity {
     private void app_user_count()
     {
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading data...");
+        progressDialog.setMessage("Loading data ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
 
@@ -237,6 +238,7 @@ public class profile extends AppCompatActivity {
     {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading data...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
 
@@ -285,7 +287,7 @@ public class profile extends AppCompatActivity {
     private void showAlertDialog()
     {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
+      //  builder.setCancelable(false);
         builder.setTitle("Logout");
         builder.setMessage("Are you sure you want to logout?");
 

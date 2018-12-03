@@ -119,7 +119,8 @@ public class explore extends Fragment {
     private void loadRecyclerViewData_explore()
     {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading data...");
+        progressDialog.setMessage("Loading data ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
