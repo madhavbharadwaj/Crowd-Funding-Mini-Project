@@ -7,7 +7,7 @@
 
     tools:context=".model.desc">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar_desc"
+        android:id="@+id/my_toolbar_admin_desc"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/landing_text_color"
@@ -21,53 +21,85 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="56dp">
+        android:layout_marginTop="60dp">
 
 
-    <TextView
-        android:id="@+id/proj_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
 
-    <TextView
-        android:id="@+id/proj_desc"
-        android:layout_marginTop="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+
         <TextView
-            android:id="@+id/proj_email"
-            android:layout_marginTop="25dp"
+
+            android:id="@+id/proj_title_admin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
+
         <TextView
-            android:id="@+id/proj_domain"
-            android:layout_marginTop="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            android:id="@+id/proj_category"
+            android:id="@+id/proj_id_admin"
             android:layout_marginTop="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
 
         <TextView
-            android:id="@+id/proj_uploadTime"
+            android:id="@+id/proj_desc_admin"
             android:layout_marginTop="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
         <TextView
-            android:id="@+id/proj_git_link"
+            android:id="@+id/proj_email_admin"
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/proj_domain_admin"
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/proj_category_admin"
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/proj_uploadTime_admin"
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/proj_git_link_admin"
             android:layout_marginTop="25dp"
             android:autoLink="web"
             android:linksClickable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
+        <Button
+            android:id="@+id/button_approve"
+            android:layout_marginTop="15dp"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/my_button"
+
+            android:text="Approve" />
+
+        <Button
+            android:id="@+id/button_reject"
+            android:layout_width="320dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/my_button"
+
+            android:text="Reject" />
+
+
     </LinearLayout>
+
 </RelativeLayout>

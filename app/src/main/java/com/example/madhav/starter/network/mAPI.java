@@ -37,4 +37,13 @@ public class mAPI {
 
     // profile (my projects) pending count
     public static String PEND_COUNT_USER = "https://crowd-src.herokuapp.com/upload/penstatus/";
+    
+    //admin panel to get pending projects
+    public static String GET_ALL_PEND_PROJ = "https://crowd-src.herokuapp.com/upload/pending";
+
+    //approve url admin part
+    public static String APPROVE_URL = "https://crowd-src.herokuapp.com/upload/edit/";
+
+    //reject url admin part
+    public static String REJECT_URL = "https://crowd-src.herokuapp.com/upload/delete/";
 }

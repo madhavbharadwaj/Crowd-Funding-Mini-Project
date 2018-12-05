@@ -210,9 +210,19 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
 
                 />
+
         </LinearLayout>
 
+        <Button
+            android:id="@+id/button_admin"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+           android:layout_gravity="center"
+            android:background="@drawable/my_button"
+            android:visibility="gone"
+            android:text="Admin Panel" />
     </LinearLayout>
+
 </LinearLayout>
 
 

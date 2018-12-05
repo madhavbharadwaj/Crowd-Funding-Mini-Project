@@ -39,6 +39,7 @@ public class profile extends AppCompatActivity {
     TextView prof_pend_count;
 
     TextView editBT;
+    Button admin;
 
     CardView my_prof_card;
 
@@ -54,7 +55,10 @@ public class profile extends AppCompatActivity {
         prof_pend_count = findViewById(R.id.prof_pend_count);
         my_prof_card = findViewById(R.id.my_prof_card);
         editBT = findViewById(R.id.editBT);
+
         b3 = findViewById(R.id.button_logout);
+
+        admin = findViewById(R.id.button_admin);
 
 
         editBT.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +112,30 @@ public class profile extends AppCompatActivity {
             public void onClick(View view) {
                 showAlertDialog();
 
+            }
+        });
+
+        SharedPreferences prefs = this.getSharedPreferences("email_pref",MODE_PRIVATE);
+        String restoredText = prefs.getString("email", null);
+
+        //Log.d("Email",restoredText);
+
+        if(restoredText.equals("1bm16mca01@bmsce.ac.in"))
+        {
+            admin.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            admin.setVisibility(View.GONE);
+        }
+
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(profile.this, admin_page.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
             }
         });
     }
