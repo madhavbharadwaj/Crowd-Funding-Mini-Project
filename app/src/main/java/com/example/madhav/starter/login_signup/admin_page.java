@@ -139,4 +139,12 @@ public class admin_page extends AppCompatActivity {
         );
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(admin_page.this, profile.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 }
