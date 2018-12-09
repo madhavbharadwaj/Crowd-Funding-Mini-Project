@@ -1,1 +1,6 @@
-# Crowd-Funding-Mini-Project
+V SEM Mini-Project
+
+Branches:
+Android App
+REST-APIs 
+Web Application
