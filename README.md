@@ -1,8 +1,9 @@
 V SEM Mini-Project
 
-Branches:
-Android App
+Branches
 
-REST-APIs 
+- Android App
 
-Web Application
+- REST-APIs 
+
+- Web Application
