@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -16,12 +16,10 @@
 
     <!-- Animation Css -->
     <link href="plugins/animate-css/animate.css" rel="stylesheet" />
-
-  
     <!-- Custom Css -->
     <link href="css/style.css" rel="stylesheet">
 
-   
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="css/themes/all-themes.css" rel="stylesheet" />
 </head>
 
@@ -55,10 +53,13 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="admin.html">ADMIN HOME</a>
+                <a class="navbar-brand" href="home.html">ADMIN HOME</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    
+                   
+                    <li id="domainc" class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">filter_list</i></a></li>
                 </ul>
             </div>
         </div>
@@ -83,20 +84,18 @@
             <div class="menu">
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
+                    <li class="active">
                         <a href="home.html">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
                     </li>
                     <li>
-                        <li class="active">
-                        <a href='admin.html'>
+                        <a href= "admin.html">
                             <i class="material-icons">text_fields</i>
                             <span>Admin Details</span>
                         </a>
                     </li>
-                   
-                   
                     <li>
                             <a id="add" data-toggle="modal" data-target="#check">
                                 <i class="material-icons">text_fields</i>
@@ -110,12 +109,13 @@
                             </a>
                         </li>
                         <li id="getpen">
-                            <li class="active">
+                            
                             <a href= "pending.html">
                                 <i class="material-icons">text_fields</i>
                                 <span>Pending Projects</span>
                             </a>
                         </li>
+                   
                    
                     
                    
@@ -136,34 +136,91 @@
             <!-- #Footer -->
         </aside>
         <!-- #END# Left Sidebar -->
-        
+        <!-- Right Sidebar -->
+        <aside id="rightsidebar" class="right-sidebar">
+            <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                <li role="presentation" class="active"><a href="#skins" data-toggle="tab">CATEGORY</a></li>
+                <li role="presentation"><a href="#settings" data-toggle="tab">DEPARTMENT</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
+                        <ul class="demo-choose-skin" id="getdomain">
+                                
+                                
+                            </ul>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="settings">
+                    <div class="demo-settings">
+                        <ul class="setting-list" id="getdept">
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- #END# Right Sidebar -->
     </section>
 
     <section class="content">
         <div class="container-fluid">
+           
+
+            <!-- Widgets -->
             <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                                ADMIN DETAILS
-                            </h2>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-pink hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">person</i>
                         </div>
-                        <div class="body table-responsive">
-                            <table class="table table-hover" id="admin">
-                                <thead>
-                                    <tr>
-                                        <th>SL NO</th>
-                                        <th>USERNAME</th>
-                                        <th>EMAIL ID</th>
-                                        <th>PHONE NO</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                              
-                                </tbody>
-                            </table>
+                        <div class="content">
+                            <div class="text">STUDENTS</div>
+                            <div id="userss" class="number count-to" data-from="" data-to="" data-speed="1" data-fresh-interval="20"></div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-cyan hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">assignment_turned_in</i>
+                        </div>
+                        <div class="content">
+                            <div> APPROVED PROJECTS</div>
+                            <div id="appproj" class="number count-to" data-from="0" data-to="" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-light-green hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">assignment_late</i>
+                        </div>
+                        <div class="content">
+                            <div >PENDING PROJECTS</div>
+                            <div id="pendproj" class="number count-to" data-from="0" data-to="" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-orange hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">person_add</i>
+                        </div>
+                        <div class="content">
+                            <div class="text"></div>
+                            <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>PIE CHART</h2>
+                    </div>
+                    <div class="body">
+                        <canvas id="pie_chart" height="150"></canvas>
                     </div>
                 </div>
             </div>
@@ -176,14 +233,14 @@
                                 <div class="modal-body">
                                     <center>
                                             <div class="body">
-                                                    <form data-bind="submit: loginTrainer">
+                                                    <form data-bind="submit: addCat">
                                                         <label for="email_address">Department</label>
                                                         <div class="form-group">
                                                             <div class="form-line">
-                                                                <input type="text" id="email_address" class="form-control" placeholder="Enter the department name" data-bind="value: newCat">
+                                                                <input type="text" id="email_address" class="form-control" placeholder="Enter the department name" data-bind="value: newCategory">
                                                             </div>
                                                         </div>
-                                            </form>
+                                          
                                                       
                                     </center>
                                 </div>
@@ -211,17 +268,25 @@
     <!-- Select Plugin Js -->
     <script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
+  
     <!-- Waves Effect Plugin Js -->
     <script src="plugins/node-waves/waves.js"></script>
-    <!-- Custom Js -->
 
+
+  
+    
+        <!--Knockout JS-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.js"></script> 
+
+    <!-- Custom Js -->
     <script src="js/admin.js"></script>
     <script src="js/pages/index.js"></script>
+    <script src="js/pages/home/getcount.js"></script>
     <script src="js/pages/home/add_dept_category.js"></script>
-    <script src="js/pages/admin/get_admin.js"></script>
-    <script src="js/pages/admin/datatable.js"></script>
-    <script src="js/pages/admin/table.js"></script>
-    
+    <script src="js/pages/home/getdomain.js"></script>
+    <script src="js/pages/review/pending.js"></script>
+    <script src="js/pages/home/dept_piechart.js"></script>
 
     <!-- Demo Js -->
     <script src="js/demo.js"></script>

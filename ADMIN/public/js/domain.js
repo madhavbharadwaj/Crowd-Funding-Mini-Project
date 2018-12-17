@@ -8,23 +8,22 @@ function DomainClass(data) {
     self.dom= ko.observableArray([]);
     self.newDomain = ko.observable();
   
-  self.addDom = function() {
-    //console.log(username);
+  self.addDomain = function() {
+    console.log("s");
     $.ajax({
       type: 'POST',
      url:"https://test-api-man.herokuapp.com/domain",
   
       data: ko.toJS(new DomainClass({ domain: this.newDomain()})),
       success: function(data) {
-        location.reload();
-      },
-      error: function (error) {
-        
-  }
-  })
+        console.log("s");
+        //location.reload();
+      }
+      
+    })
   };
-  } 
-  ko.applyBindings(new viewModel());
+} 
+ko.applyBindings(new viewModel());
   
   
   
