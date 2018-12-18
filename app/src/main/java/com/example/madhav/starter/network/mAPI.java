@@ -46,4 +46,10 @@ public class mAPI {
 
     //reject url admin part
     public static String REJECT_URL = "https://crowd-src.herokuapp.com/upload/delete/";
+
+    //domain url
+    public static String DOMAIN_URL = "http://crowd-src.herokuapp.com/domain";
+
+    //dept names
+    public static String DEPT_URL =   "http://crowd-src.herokuapp.com/category";
 }

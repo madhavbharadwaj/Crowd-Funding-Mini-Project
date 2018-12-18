@@ -73,7 +73,7 @@ public class admin_desc extends AppCompatActivity {
         proj_desc_admin.setText("Description : "+getIntent().getStringExtra("description"));
         proj_email_admin.setText("Uploaded by : "+getIntent().getStringExtra("email"));
         proj_domain_admin.setText("Domain : "+getIntent().getStringExtra("domain"));
-        proj_category_admin.setText("Category : "+getIntent().getStringExtra("category"));
+        proj_category_admin.setText("Department : "+getIntent().getStringExtra("category"));
         proj_uploadTime_admin.setText("Date/Time : "+getIntent().getStringExtra("tou"));
         proj_git_link_admin.setText("Github link : "+getIntent().getStringExtra("pgl"));
 

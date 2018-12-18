@@ -62,7 +62,7 @@ public class desc extends AppCompatActivity {
         proj_desc.setText("Description : "+getIntent().getStringExtra("description"));
         proj_email.setText("Uploaded by : "+getIntent().getStringExtra("email"));
         proj_domain.setText("Domain : "+getIntent().getStringExtra("domain"));
-        proj_category.setText("Category : "+getIntent().getStringExtra("category"));
+        proj_category.setText("Department : "+getIntent().getStringExtra("category"));
         proj_uploadTime.setText("Date/Time : "+getIntent().getStringExtra("tou"));
         proj_git_link.setText("Github link : "+getIntent().getStringExtra("pgl"));
 
