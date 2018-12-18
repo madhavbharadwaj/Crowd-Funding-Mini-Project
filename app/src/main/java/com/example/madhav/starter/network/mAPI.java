@@ -52,4 +52,22 @@ public class mAPI {
 
     //dept names
     public static String DEPT_URL =   "http://crowd-src.herokuapp.com/category";
+
+    //MCA section (explore in MCA)
+    public static String EXPLORE_MCA_URL = "https://crowd-src.herokuapp.com/upload/appcategory/MCA";
+
+    //MCA section (upcoming in MCA)
+    public static String UPCOMING_MCA_URL =  "https://crowd-src.herokuapp.com/upload/pencategory/MCA";
+
+    //MCA SECTION (Newest in MCA)
+    public static String NEWEST_MCA_URL = "https://crowd-src.herokuapp.com/upload/newappcategory/MCA";
+
+    //ICL section (explore in ICL)
+    public static String EXPLORE_ICL_URL = "https://crowd-src.herokuapp.com/upload/appcategory/ICL";
+
+    //ICL section (upcoming in MCA)
+    public static String UPCOMING_ICL_URL =  "https://crowd-src.herokuapp.com/upload/pencategory/ICL";
+
+    //ICL SECTION (Newest in MCA)
+    public static String NEWEST_ICL_URL = "https://crowd-src.herokuapp.com/upload/newappcategory/ICL";
 }
