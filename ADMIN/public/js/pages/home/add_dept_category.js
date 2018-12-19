@@ -41,7 +41,7 @@ function viewModel(){
       data: ko.toJS(new DomainClass({ domain: this.newDomain()})),
       success: function(data) {
         console.log("s");
-        //location.reload();
+        location.reload();
       }
       
     })

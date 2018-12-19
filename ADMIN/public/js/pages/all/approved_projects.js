@@ -1,9 +1,9 @@
 
 c=0;
 window.onload=function(){
-    //var pageloader="<div class='page-loader-wrapper'><div class='loader'><div class='preloader'><div class='spinner-layer pl-red'><div class='circle-clipper left'><div class='circle'></div></div><div class='circle-clipper right'><div class='circle'></div></div></div></div><p>Please wait...</p></div></div>";
-    c++;
 
+    c++;
+    
     //GET ALL THE DOMAINS TO FILTER
     $.ajax({
         type: 'GET',
@@ -14,7 +14,7 @@ window.onload=function(){
             {
                 if(c==1)
                 {
-                    $("#getdomain").append("<li class='use'>All</li>");
+                    $("#getdomain").append("<li class='use'><a>All</a></li>");
                     for (var i=0;i<data.TOTAL_NO_OF_DOMAINS;i++)
                     {
                         $("#getdomain").append("<li class='use'>"+data.DOMAIN_DETAILS[i].domain+"</li>");
@@ -30,17 +30,17 @@ window.onload=function(){
                         
                         if(title==='All')
                         {
-                           // location.reload();
-                           div.parentNode.removeChild(div);
+                            var x='https://crowd-src.herokuapp.com/upload/pending';
+                            $.getJSON("https://crowd-src.herokuapp.com/upload/pending", function (data) 
+                            {
+                                y=data.TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED;
+                            })
                             
                         }
                         //API TO GET ALL THE PROJECTS FOR A PERTICULAR DOMAIN
                         else{
-                            
                             //location.reload();
-                            //	alert(title);
-                            //document.getElementById("page").innerHTML=pageloader;
-                            
+						//	alert(title);
                             var x='https://crowd-src.herokuapp.com/upload/pendomain/'+title;
                             $.getJSON("https://crowd-src.herokuapp.com/upload/pendomain/"+title, function (data) 
                             {
@@ -67,54 +67,25 @@ window.onload=function(){
                                         //console.log(y);
                                         g= document.createElement('div');
                                         console.log(data.COMPLETE_DETAILS[i].title);
-                                        
                                         g.id = i;
                                         //g.style.margin.left= "1000px";
                                         var pid=data.COMPLETE_DETAILS[i]._id;
                                         var email=data.COMPLETE_DETAILS[i].email;
-                                        var title=data.COMPLETE_DETAILS[i].title;
-                                        var description=data.COMPLETE_DETAILS[i].description;
-                                        var domain=data.COMPLETE_DETAILS[i].domain;
-                                        var dept=data.COMPLETE_DETAILS[i].category;
-                                        var git=data.COMPLETE_DETAILS[i].git_proj_link;
                                         var a="<div class='col-lg-4 col-md-4 col-sm-6 col-xs-12'><div class='card'><div class='header bg-pink'><h2>";
                                         var b="<small class='email'>";
                                         var c="</small></h2></div><div class='body'>";
                                         //ADD LIST APPROVE <LI CLASS="APPROVE"> AND DISAPPROVE <LI CALSS="DISAPROVE">
-                                        
-                                        //var e="<ul class='header-dropdown m-r--5'><li class='dropdown'><a href='javascript:void(0);' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'><i class='material-icons'>more_vert</i></a><ul class='dropdown-menu pull-right'><li class='approve' ><a>APPROVE</a></li><li class='disapprove'><a>DISAPPROVE</a></li></ul>";
-                                        var e="<ul><li class='approve'><a role='button'><i class='material-icons'>check</i></a></li></ul>";
-                                        var f="<ul><li class='disapprove'><a role='button'><i class='material-icons'>close</i></a></li></ul>";
-
+                                        var e="<ul class='header-dropdown m-r--5'><li class='dropdown'><a href='javascript:void(0);' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'><i class='material-icons'>more_vert</i></a><ul class='dropdown-menu pull-right'><li class='approve' ><a>APPROVE</a></li><li class='disapprove'><a>DISAPPROVE</a></li></ul>";
                                         var d="</div></div></div>";
                                         console.log("yes");
                                         var n="<h5>PROJECT DOMAIN :";
                                         var m="<h5>PROJECT STATUS :";
-                                        var l="<ul><li class='modalop'><a role='button'><i class='material-icons' style='color:grey;'>visibility</i></a></li></ul>";
-                                        var k="</h5>";
+                                        var k="</h5><br>"
                                         document.body.appendChild(g);
-                                        var abc = x+a+data.COMPLETE_DETAILS[i].title+b+data.COMPLETE_DETAILS[i].email+e+f+c+n+data.COMPLETE_DETAILS[i].domain+k+m+data.COMPLETE_DETAILS[i].status+k+l+d+z;
-                                        
+                                        var abc = x+a+data.COMPLETE_DETAILS[i].title+b+data.COMPLETE_DETAILS[i].email+e+c+n+data.COMPLETE_DETAILS[i].domain+k+m+data.COMPLETE_DETAILS[i].status+k+d;
                                         document.getElementById(g.id).innerHTML=abc;
                                         
                                     }
-                                    //OPEN MODAL POPUP
-                                    $(".modalop").click(function()
-                                    {
-                                        
-                                        id=pid;
-                                        x=email;
-                                        console.log(id);
-                                        console.log(x);
-                                        document.getElementById("title").innerHTML=title;
-                                        document.getElementById("mail").innerHTML=email;
-                                        document.getElementById("desc").innerHTML=description;
-                                        document.getElementById("domain").innerHTML=domain;
-                                        document.getElementById("department").innerHTML=dept;
-                                        document.getElementById("git").innerHTML=git;
-                                        $('#appdomain').modal();
-
-                                    })
                                     //APPROVE PROJECTS 
                                     $(".approve").click(function(){
                                         id=pid;
@@ -154,11 +125,6 @@ window.onload=function(){
             })
         }
     })
-
-
-
-
-
 
     //GET ALL DEPARTMENT NAME
     $.ajax({
@@ -202,74 +168,15 @@ window.onload=function(){
                                         var c="</small></h2></div><div class='body'>";
                                         var pid=data.COMPLETE_DETAILS[i]._id;
                                         var email=data.COMPLETE_DETAILS[i].email;
-
-                                        var title=data.COMPLETE_DETAILS[i].title;
-                                        var description=data.COMPLETE_DETAILS[i].description;
-                                        var domain=data.COMPLETE_DETAILS[i].domain;
-                                        var dept=data.COMPLETE_DETAILS[i].category;
-                                        var git=data.COMPLETE_DETAILS[i].git_proj_link;
-                                        var e="<ul><li class='approve'><a role='button'><i class='material-icons'>check</i></a></li></ul>";
-                                        var f="<ul><li class='disapprove'><a role='button'><i class='material-icons'>clear</i></a></li></ul>";
-
+                                        var e="<ul class='header-dropdown m-r--5'><li class='dropdown'><a href='javascript:void(0);' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'><i class='material-icons'>more_vert</i></a><ul class='dropdown-menu pull-right'><li class='approve'><a>APPROVE</a></li><li class='disapprove'><a'>DISAPPROVE</a></li></ul></li></ul>"
                                         var d="</div></div></div>";
-                                        var n="<h5>PROJECT DOMAIN :";
-                                        var m="<h5>PROJECT STATUS :";
-                                        var k="</h5>";
-                                        var l="<ul><li class='modalop'><a role='button'><i class='material-icons' style='color:grey;'>visibility</i></a></li></ul>";
-
                                         console.log("yes");
                                     
                                         document.body.appendChild(g);
-                                        var abc = x+a+data.COMPLETE_DETAILS[i].title+b+data.COMPLETE_DETAILS[i].email+e+f+c+n+data.COMPLETE_DETAILS[i].domain+k+m+data.COMPLETE_DETAILS[i].status+k+l+d+z;
+                                        var abc = x+a+data.COMPLETE_DETAILS[i].title+b+data.COMPLETE_DETAILS[i].email+e+c+data.COMPLETE_DETAILS[i].description+data.COMPLETE_DETAILS[i].git_proj_link+d;
                                         document.getElementById(g.id).innerHTML=abc;
                                     }
-                                    $(".modalop").click(function()
-                                    {
-                                        
-                                        id=pid;
-                                        x=email;
-                                        console.log(id);
-                                        console.log(x);
-                                        document.getElementById("title").innerHTML=title;
-                                        document.getElementById("mail").innerHTML=email;
-                                        document.getElementById("desc").innerHTML=description;
-                                        document.getElementById("domain").innerHTML=domain;
-                                        document.getElementById("department").innerHTML=dept;
-                                        document.getElementById("git").innerHTML=git;
-                                        $('#appdomain').modal();
-
-                                    })
-                                    $(".approve").click(function(){
-                                        id=pid;
-                                        x=email;
-                                        console.log(id);
-                                        console.log(x);
-                                        $.ajax({
-                                            type: 'PUT',
-                                            data: ({email: x, status: "approve"}),
-                                            url: "https://crowd-src.herokuapp.com/upload/edit/"+id,
-                                            success: function() {
-                                             
-                                              console.log('Trainer Updated Successfully!');
-                                              location.reload(); 
-                                            }
-                                       
-                                        })
-                                
-                                    })
-                                    $(".disapprove").click(function(){
-                                        alert("DD");
-                                        id=pid;
-                                        console.log(id);
-                                        $.ajax({
-                                            type: 'DELETE',
-                                            url: "https://crowd-src.herokuapp.com/upload/edit/"+id,
-                                            success: function() {
-                                              location.reload(); 
-                                              
-                                            }
-                                        })
-                                    });
+                                    
                                 })
                             }    
                         })
@@ -278,5 +185,5 @@ window.onload=function(){
             })
         }
     })
-}         
-
+}          
+                                    

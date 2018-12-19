@@ -70,12 +70,14 @@ window.onload=function(){
                 });
                  */
                 var div = $('#pendproj');
+                
                 div.attr('data-from',0);
                 div.attr('data-to',data.TOTAL_NO_OF_PROJECTS_UPLOADED_YET_TO_BE_APPROVED);
                 div.attr('data-speed',1000);
-                div.attr('data-fresh-interval',20);
-                //console.log(div.attr('data-to'));  
-                $("#pendproj").html(div.attr('data-to')); 
+                div.attr('data-fresh-interval',200);
+                //console.log(div.attr('data-to')); 
+                $("#pendproj").html(div.attr('data-to'));  
+                
             
             })
         }

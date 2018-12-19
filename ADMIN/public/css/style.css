@@ -1,4 +1,30 @@
-﻿/* Navbar ====================================== */
+﻿/*CARD APPROVE AND DISAPPROVE*/
+.approve 
+{
+  position: absolute;
+      top: 20px;
+      left: 250px;
+      list-style: none;
+}
+.modalop 
+{
+  position: absolute;
+      bottom : 10px;
+      right: 10px;
+      list-style: none;
+}
+.disapprove
+{
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  list-style: none;
+}
+
+
+
+
+/* Navbar ====================================== */
 @import url(materialize.css);
 .navbar {
   font-family: "Roboto", sans-serif;

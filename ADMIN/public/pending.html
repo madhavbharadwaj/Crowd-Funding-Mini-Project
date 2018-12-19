@@ -102,7 +102,7 @@
                     </li>
                     <li>
                         <a href= "admin.html">
-                            <i class="material-icons">text_fields</i>
+                            <i class="material-icons">supervisor_account</i>
                             <span>Admin Details</span>
                         </a>
                     </li>
@@ -110,29 +110,23 @@
                    
                     <li>
                         <a id="add" data-toggle="modal" data-target="#check">
-                            <i class="material-icons">text_fields</i>
-                            <span>ADD DEPARTMENT</span>
+                            <i class="material-icons">add</i>
+                            <span>Add Department</span>
                         </a>
                     </li>
                     <li>
                         <a data-toggle="modal" data-target="#domain">
-                            <i class="material-icons">text_fields</i>
-                            <span>ADD DOMAIN</span>
+                            <i class="material-icons">add</i>
+                            <span>Add Domain</span>
                         </a>
                     </li>
                     <li id="getpen">
                         <li class="active">
                         <a href= "pending.html">
-                            <i class="material-icons">text_fields</i>
+                            <i class="material-icons">assignment_late</i>
                             <span>Pending Projects</span>
                         </a>
-                    </li>
-                   
-                   
-                    
-                   
-                    
-                    
+                    </li> 
                 </ul>
             </div>
             <!-- #Menu -->
@@ -234,8 +228,38 @@
                     </div>
             
                 </div>
+            </div>
+            <div class="modal fade" id="appdomain" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" id="title"> </h4>
+                            <h6 class="modal-title" id="mail"> </h4>
+                        </div>
+                        <div class="modal-body">
+                            
+                                <div class="body">
+                                <h6>DESCRIPTION:</h6><h6 id="desc"></h6>
+                                <h6>DEPARTMENT</h6><h6 id="department"></h6><br>
+                                <h6>GIT HUB LINK:</h6><h46 id="git"></h6><br>
+                                
+                                            
+                                </div>                                                
+                            
+                        </div>
+                        <div class="modal-footer">
+                                
+                                
+                            <button class="btn btn-primary m-t-15 waves-effect" type="reset" data-dismiss="modal">CLOSE</button>
+                                
+                        </div>
+                                    </form>
+                    </div>
+            
+                </div>
             </div>  
-              
+            
             
         
         </div>
@@ -256,19 +280,11 @@
     <!-- Waves Effect Plugin Js -->
     <script src="plugins/node-waves/waves.js"></script>
 
-    <!-- Jquery CountTo Plugin Js -->
-    <script src="plugins/jquery-countto/jquery.countTo.js"></script>
-
-    <!-- Morris Plugin Js -->
-    <script src="plugins/raphael/raphael.min.js"></script>
-    <script src="plugins/morrisjs/morris.js"></script>
-    <!-- Slimscroll Plugin Js -->
-    <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+  
 
     <!-- Demo Js -->
     <script src="js/demo.js"></script>
-    <!-- ChartJs -->
-    <script src="plugins/chartjs/Chart.bundle.js"></script>
+   
     <!--Knockout JS-->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.js"></script> 
@@ -278,7 +294,7 @@
     <script src="js/pages/index.js"></script>
     <script src="js/pages/home/add_dept_category.js"></script>
     <script src="js/pages/review/pendingfilter.js"></script>
-    <script src="js/pages/review/approve.js"></script>
+    
 
     
 </body>
