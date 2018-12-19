@@ -158,7 +158,7 @@ public class admin_desc extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("email", email_body);
-                params.put("status", "approved");
+                params.put("status", "approve");
                 return params;
             }
         };
