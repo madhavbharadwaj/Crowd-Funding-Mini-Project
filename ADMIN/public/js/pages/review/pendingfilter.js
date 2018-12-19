@@ -30,8 +30,8 @@ window.onload=function(){
                         
                         if(title==='All')
                         {
-                           // location.reload();
-                           div.parentNode.removeChild(div);
+                           location.reload();
+                           
                             
                         }
                         //API TO GET ALL THE PROJECTS FOR A PERTICULAR DOMAIN
@@ -77,26 +77,23 @@ window.onload=function(){
                                         var domain=data.COMPLETE_DETAILS[i].domain;
                                         var dept=data.COMPLETE_DETAILS[i].category;
                                         var git=data.COMPLETE_DETAILS[i].git_proj_link;
-                                        var a="<div class='col-lg-4 col-md-4 col-sm-6 col-xs-12'><div class='card'><div class='header bg-pink'><h2>";
-                                        var b="<small class='email'>";
+                                        var a="<div class='col-lg-4 col-md-4 col-sm-6 col-xs-12'><div class='card'><div class='header bg-pink'><h2>PROJECT:";
+                                        var f="</h2><br><h2>Title:";
+                                        var b="</h2><small class='email'>Email:";
                                         var c="</small></h2></div><div class='body'>";
-                                        //ADD LIST APPROVE <LI CLASS="APPROVE"> AND DISAPPROVE <LI CALSS="DISAPROVE">
-                                        
-                                        //var e="<ul class='header-dropdown m-r--5'><li class='dropdown'><a href='javascript:void(0);' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'><i class='material-icons'>more_vert</i></a><ul class='dropdown-menu pull-right'><li class='approve' ><a>APPROVE</a></li><li class='disapprove'><a>DISAPPROVE</a></li></ul>";
-                                        var e="<ul><li class='approve'><a role='button'><i class='material-icons'>check</i></a></li></ul>";
-                                        var f="<ul><li class='disapprove'><a role='button'><i class='material-icons'>close</i></a></li></ul>";
+                                        //ADD LIST APPROVE <LI CLASS="APPROVE"> AND DISAPPROVE <LI ID="DISAPROVE">
 
                                         var d="</div></div></div>";
                                         console.log("yes");
-                                        var n="<h5>PROJECT DOMAIN :";
-                                        var m="<h5>PROJECT STATUS :";
+                                        var n="<h5>DOMAIN :";
+                                        var m="<h5>STATUS :";
                                         var l="<ul><li class='modalop'><a role='button'><i class='material-icons' style='color:grey;'>visibility</i></a></li></ul>";
                                         var k="</h5>";
                                         document.body.appendChild(g);
-                                        var abc = x+a+data.COMPLETE_DETAILS[i].title+b+data.COMPLETE_DETAILS[i].email+e+f+c+n+data.COMPLETE_DETAILS[i].domain+k+m+data.COMPLETE_DETAILS[i].status+k+l+d+z;
-                                        
+                                        var abc = x+a+(i+1)+f+data.COMPLETE_DETAILS[i].title+b+data.COMPLETE_DETAILS[i].email+c+n+data.COMPLETE_DETAILS[i].domain+k+m+data.COMPLETE_DETAILS[i].status+k+l+d+z;
+                                        var app="<button class='btn btn-primary m-t-15 waves-effect' id='approve'>APPROVE</button><button class='btn btn-primary m-t-15 waves-effect' id='disapprove'>DISAPPROVE</button>"
                                         document.getElementById(g.id).innerHTML=abc;
-                                        
+                                        document.getElementById("modalinfo").innerHTML=app;
                                     }
                                     //OPEN MODAL POPUP
                                     $(".modalop").click(function()
@@ -116,7 +113,7 @@ window.onload=function(){
 
                                     })
                                     //APPROVE PROJECTS 
-                                    $(".approve").click(function(){
+                                    $("#approve").click(function(){
                                         id=pid;
                                         x=email;
                                         console.log(id);
@@ -134,7 +131,7 @@ window.onload=function(){
                                         })
                                 
                                     })
-                                    $(".disapprove").click(function(){
+                                    $("#disapprove").click(function(){
                                         id=pid;
                                         console.log("dd");
                                         $.ajax({
@@ -218,10 +215,11 @@ window.onload=function(){
                                         var l="<ul><li class='modalop'><a role='button'><i class='material-icons' style='color:grey;'>visibility</i></a></li></ul>";
 
                                         console.log("yes");
-                                    
+                                        var app="<button class='btn btn-primary m-t-15 waves-effect' id='approve'>APPROVE</button><button class='btn btn-primary m-t-15 waves-effect' id='disapprove'>DISAPPROVE</button>";
                                         document.body.appendChild(g);
-                                        var abc = x+a+data.COMPLETE_DETAILS[i].title+b+data.COMPLETE_DETAILS[i].email+e+f+c+n+data.COMPLETE_DETAILS[i].domain+k+m+data.COMPLETE_DETAILS[i].status+k+l+d+z;
+                                        var abc = x+a+data.COMPLETE_DETAILS[i].title+b+data.COMPLETE_DETAILS[i].email+c+n+data.COMPLETE_DETAILS[i].domain+k+m+data.COMPLETE_DETAILS[i].status+k+l+d+z;
                                         document.getElementById(g.id).innerHTML=abc;
+                                        document.getElementById("modalinfo").innerHTML=app;
                                     }
                                     $(".modalop").click(function()
                                     {
@@ -239,7 +237,7 @@ window.onload=function(){
                                         $('#appdomain').modal();
 
                                     })
-                                    $(".approve").click(function(){
+                                    $("#approve").click(function(){
                                         id=pid;
                                         x=email;
                                         console.log(id);
@@ -257,7 +255,7 @@ window.onload=function(){
                                         })
                                 
                                     })
-                                    $(".disapprove").click(function(){
+                                    $("#disapprove").click(function(){
                                         alert("DD");
                                         id=pid;
                                         console.log(id);

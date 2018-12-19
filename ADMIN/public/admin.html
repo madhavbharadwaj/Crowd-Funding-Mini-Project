@@ -167,36 +167,66 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="check" role="dialog">
+            <div class="modal fade" id="domain" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
-                                <div class="modal-body">
-                                    <center>
-                                            <div class="body">
-                                                    <form data-bind="submit: loginTrainer">
-                                                        <label for="email_address">Department</label>
-                                                        <div class="form-group">
-                                                            <div class="form-line">
-                                                                <input type="text" id="email_address" class="form-control" placeholder="Enter the department name" data-bind="value: newCat">
-                                                            </div>
-                                                        </div>
-                                            </form>
-                                                      
-                                    </center>
-                                </div>
-                                <div class="modal-footer">
-                                        <button class="btn btn-primary m-t-15 waves-effect" type="submit">SAVE</button>
-                                        
-                                        <button class="btn btn-primary m-t-15 waves-effect" type="reset" data-dismiss="modal">CANCEL</button>
-                                        
-                                </div>
+                            <div class="modal-body">
+                                <center>
+                                    <div class="body">
+                                        <form data-bind="submit: addDomain">
+                                            <label for="domain">ADD DOMAIN</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="domain" class="form-control" placeholder="Enter the domain name" data-bind="value: newDomain">
+                                                </div>
+                                            </div>
+                                    </div>                                              
+                                </center>
+                            </div>
+                            <div class="modal-footer">
+                                    <button class="btn btn-primary m-t-15 waves-effect" type="submit">SAVE</button>
+                                    
+                                    <button class="btn btn-primary m-t-15 waves-effect" type="reset" data-dismiss="modal">CANCEL</button>
+                                    
+                            </div>
                                         </form>
                         </div>
+                    
                     </div>
-            </div>    
+                </div> 
+                <div class="modal fade" id="check" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <center>
+                                    <div class="body">
+                                        <form data-bind="submit: addCat">
+                                                <label for="email_address">Department</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="email_address" class="form-control" placeholder="Enter the department name" data-bind="value: newCategory">
+                                                    </div>
+                                                </div>
+                                    </div>                                                
+                                </center>
+                            </div>
+                            <div class="modal-footer">
+                                    <button class="btn btn-primary m-t-15 waves-effect" type="submit">SAVE</button>
+                                    
+                                    <button class="btn btn-primary m-t-15 waves-effect" type="reset" data-dismiss="modal">CANCEL</button>
+                                    
+                            </div>
+                                        </form>
+                        </div>
+                
+                    </div>
+                </div>    
             
 
         </div>

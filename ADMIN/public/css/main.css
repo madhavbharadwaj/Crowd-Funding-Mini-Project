@@ -772,8 +772,8 @@ button.btn--primary,
 input[type="submit"].btn--primary,
 input[type="reset"].btn--primary,
 input[type="button"].btn--primary {
-    background: #39b54a;
-    border-color: #39b54a;
+    background:#455a64;
+    border-color:#455a64;
     color: #FFFFFF;
 }
 
@@ -787,8 +787,8 @@ button.btn--primary:focus,
 input[type="submit"].btn--primary:focus,
 input[type="reset"].btn--primary:focus,
 input[type="button"].btn--primary:focus {
-    background: #33a242;
-    border-color: #33a242;
+    background: #455a64;
+    border-color:#455a64;
 }
 
 
@@ -1951,9 +1951,11 @@ html.no-csstransitions .home-content__main {
 .contact-content {
     max-width: 400px;
     background-color:#FFFFFF;
-    color:#39b54a;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    color:#383a38;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 1px;
+    padding-right: 1px;
     font-family: "montserrat-light", sans-serif;
     font-size: 1.5rem;
     line-height: 2;
@@ -1984,8 +1986,8 @@ html.no-csstransitions .home-content__main {
 .contact-content input[type="password"]:focus,
 .contact-content textarea:focus,
 .contact-content select:focus {
-    color: #39b54a;
-    border-bottom: 1px solid #39b54a;
+    color: #414642;
+    border-bottom: 1px solid #414642;
 }
 
 .contact-content button,
@@ -1995,7 +1997,7 @@ html.no-csstransitions .home-content__main {
 .contact-content input::-webkit-input-placeholder,
 .contact-content select::-webkit-input-placeholder,
 .contact-content textarea::-webkit-input-placeholder {
-    color: #4f4f4f;
+    color: #414642;
 }
 
 .contact-primary, .contact-secondary {

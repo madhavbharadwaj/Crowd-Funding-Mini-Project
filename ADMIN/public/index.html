@@ -14,12 +14,16 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/vendor.css">
     <link rel="stylesheet" href="css/main.css">
+    
     <!--MDL
     ================================================== -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
    
 </head>
+<style>
+    
+</style>
 
 <body id="top">
 
@@ -72,16 +76,18 @@
         <div class="row contact-content" data-aos="fade-up">
             
             <div class="contact-primary">
-
-                <form name="contactForm" data-bind="submit: loginTrainer" id="contactForm" method="post" action="" novalidate="novalidate">
+                <center><div><img src="images/ic_new_abs.png"width="100" height="90" alt="User" />
+                    </div><small>ADMIN LOGIN</small>
+                </center><br>
+                <form name="contactForm" data-bind="submit: loginTrainer" id="contactForm" method="post" action="">
                     <fieldset>
                         <div class="form-field">
-                            <input name="contactEmail" type="email" id="email" placeholder="Your Email" value="" required="" aria-required="true" class="full-width" data-bind="value: newTrainerLEmail">
+                            <input name="contactEmail" type="email" id="email" placeholder="Your Email" value=""  aria-required="true" class="full-width" data-bind="value: newTrainerLEmail" required>
                         </div>
                     
                         
                     <div class="form-field">
-                        <input name="password" type="password" id="password" placeholder="Password" value="" minlength="2" required="" aria-required="true" class="full-width" data-bind="value: newTrainerLPass">
+                        <input name="password" type="password" id="password" placeholder="Password" value="" minlength="2"  aria-required="true" class="full-width" data-bind="value: newTrainerLPass" required>
                     </div>
                    
                     <div class="form-field"><center>
