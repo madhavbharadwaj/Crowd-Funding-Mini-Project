@@ -28,7 +28,8 @@ function viewModel(){
             data: ko.toJS(new AdminClass({username: this.newAdminUName(),email:  this.newAdminEmail(),mobile:  this.newAdminMobile()})),
             success: function(data) {
                 console.log("x"); alert("hi");
-                console.log("admin added!", data); //the new item is returned with an ID
+                console.log("admin added!", data); 
+                alert("CHECK YOUR REGISTERED MAIL ID TO CHANGE PASSWORD");//the new item is returned with an ID
                 window.history.go(0);
             } 
         })

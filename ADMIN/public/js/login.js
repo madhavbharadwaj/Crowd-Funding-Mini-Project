@@ -35,6 +35,7 @@ function viewModel(){
                 sLoader.slideUp("slow");
                 $('.message-warning').html("Invalid email or password!");
                 $('.message-warning').slideDown("slow");
+                
 
             }
 

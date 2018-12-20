@@ -120,7 +120,7 @@ window.onload=function(){
                                         console.log(x);
                                         $.ajax({
                                             type: 'PUT',
-                                            data:  ({email: x, status: "approve"}),
+                                            data:  ({email: x, status: "approved"}),
                                             url: "https://crowd-src.herokuapp.com/upload/edit/"+id,
                                             success: function() {
                                              
@@ -131,11 +131,13 @@ window.onload=function(){
                                         })
                                 
                                     })
+                                    //DIAPPROVE PROJECTS
                                     $("#disapprove").click(function(){
                                         id=pid;
                                         console.log("dd");
                                         $.ajax({
-                                            type: 'DELETE',
+                                            type: 'POST',
+                                            data:({email:x}),
                                             url: "https://crowd-src.herokuapp.com/upload/delete/"+id,
                                             success: function() {
                                               location.reload(); 
@@ -191,36 +193,36 @@ window.onload=function(){
                                         
                                         g= document.createElement('div');
                                         console.log(data.COMPLETE_DETAILS[i].title);
-                                        g.id = i;
-                                        //g.style.margin.left= "1000px";
                                         
-                                        var a="<div class='col-lg-4 col-md-4 col-sm-6 col-xs-12'><div class='card'><div class='header bg-pink'><h2>";
-                                        var b="<small>";
-                                        var c="</small></h2></div><div class='body'>";
+                                        g.id = i;
+                                        g.style.width ="100%";
+                                        //g.style.margin.left= "1000px";
                                         var pid=data.COMPLETE_DETAILS[i]._id;
                                         var email=data.COMPLETE_DETAILS[i].email;
-
                                         var title=data.COMPLETE_DETAILS[i].title;
                                         var description=data.COMPLETE_DETAILS[i].description;
                                         var domain=data.COMPLETE_DETAILS[i].domain;
                                         var dept=data.COMPLETE_DETAILS[i].category;
                                         var git=data.COMPLETE_DETAILS[i].git_proj_link;
-                                        var e="<ul><li class='approve'><a role='button'><i class='material-icons'>check</i></a></li></ul>";
-                                        var f="<ul><li class='disapprove'><a role='button'><i class='material-icons'>clear</i></a></li></ul>";
+                                        var a="<div class='col-lg-4 col-md-4 col-sm-6 col-xs-12'><div class='card'><div class='header bg-pink'><h2>PROJECT:";
+                                        var f="</h2><br><h2>Title:";
+                                        var b="</h2><small class='email'>Email:";
+                                        var c="</small></h2></div><div class='body'>";
+                                        //ADD LIST APPROVE <LI CLASS="APPROVE"> AND DISAPPROVE <LI ID="DISAPROVE">
 
                                         var d="</div></div></div>";
-                                        var n="<h5>PROJECT DOMAIN :";
-                                        var m="<h5>PROJECT STATUS :";
-                                        var k="</h5>";
-                                        var l="<ul><li class='modalop'><a role='button'><i class='material-icons' style='color:grey;'>visibility</i></a></li></ul>";
-
                                         console.log("yes");
-                                        var app="<button class='btn btn-primary m-t-15 waves-effect' id='approve'>APPROVE</button><button class='btn btn-primary m-t-15 waves-effect' id='disapprove'>DISAPPROVE</button>";
+                                        var n="<h5>DOMAIN :";
+                                        var m="<h5>STATUS :";
+                                        var l="<ul><li class='modalop'><a role='button'><i class='material-icons' style='color:grey;'>visibility</i></a></li></ul>";
+                                        var k="</h5>";
                                         document.body.appendChild(g);
-                                        var abc = x+a+data.COMPLETE_DETAILS[i].title+b+data.COMPLETE_DETAILS[i].email+c+n+data.COMPLETE_DETAILS[i].domain+k+m+data.COMPLETE_DETAILS[i].status+k+l+d+z;
+                                        var abc = x+a+(i+1)+f+data.COMPLETE_DETAILS[i].title+b+data.COMPLETE_DETAILS[i].email+c+n+data.COMPLETE_DETAILS[i].domain+k+m+data.COMPLETE_DETAILS[i].status+k+l+d+z;
+                                        var app="<button class='btn btn-primary m-t-15 waves-effect' id='approve'>APPROVE</button><button class='btn btn-primary m-t-15 waves-effect' id='disapprove'>DISAPPROVE</button>"
                                         document.getElementById(g.id).innerHTML=abc;
                                         document.getElementById("modalinfo").innerHTML=app;
                                     }
+                                    //OPEN MODAL POPUP
                                     $(".modalop").click(function()
                                     {
                                         
@@ -237,6 +239,7 @@ window.onload=function(){
                                         $('#appdomain').modal();
 
                                     })
+                                    //APPROVE PROJECTS
                                     $("#approve").click(function(){
                                         id=pid;
                                         x=email;
@@ -244,7 +247,7 @@ window.onload=function(){
                                         console.log(x);
                                         $.ajax({
                                             type: 'PUT',
-                                            data: ({email: x, status: "approve"}),
+                                            data: ({email: x, status: "approved"}),
                                             url: "https://crowd-src.herokuapp.com/upload/edit/"+id,
                                             success: function() {
                                              
@@ -255,12 +258,15 @@ window.onload=function(){
                                         })
                                 
                                     })
+                                    //DISAPPROVE PROJECTS
                                     $("#disapprove").click(function(){
                                         alert("DD");
                                         id=pid;
+                                        x=email;
                                         console.log(id);
                                         $.ajax({
-                                            type: 'DELETE',
+                                            type: 'POST',
+                                            data:({email:x}),
                                             url: "https://crowd-src.herokuapp.com/upload/edit/"+id,
                                             success: function() {
                                               location.reload(); 

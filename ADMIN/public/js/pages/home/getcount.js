@@ -82,6 +82,35 @@ window.onload=function(){
             })
         }
     })
+    //NUMBER OF DEPARTMENTS AVAILABE
+    $.ajax({
+
+        type: 'GET',
+        url: 'https://crowd-src.herokuapp.com/category',
+        success: function(data) {   
+            $.getJSON('https://crowd-src.herokuapp.com/category', function (data) {
+                /* 
+                var timer = $("#userss");
+                timer.countTo({
+                    from: 0,
+                    to: timer.prop('data-to'),
+                    speed: 1000,
+                    refreshInterval: 50
+                });
+                 */
+                var div = $('#pendproj');
+                
+                div.attr('data-from',0);
+                div.attr('data-to',data.TOTAL_NO_OF_CATEGORY);
+                div.attr('data-speed',1000);
+                div.attr('data-fresh-interval',200);
+                //console.log(div.attr('data-to')); 
+                $("#noofdept").html(div.attr('data-to'));  
+                
+            
+            })
+        }
+    })
         
 
 }
