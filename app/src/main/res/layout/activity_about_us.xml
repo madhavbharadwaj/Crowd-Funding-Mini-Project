@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login_signup.about_us">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar_au"
+        android:layout_width="match_parent"
+
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/landing_text_color"
+        android:elevation="4dp"
+        android:backgroundTint="@color/colorAccent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        />
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="56dp"
+        >
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_new_abs"
+            />
+        <TextView
+            android:id="@+id/tab_s"
+            android:layout_width="wrap_content"
+            android:text="V SEM Mini-Project "
+            android:layout_margin="20dp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:layout_height="wrap_content"
+
+            />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:layout_marginLeft="35dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="Abhilash N"
+                >
+            </TextView>
+            <TextView
+                android:id="@+id/upc_count"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:text="Backend"
+                android:layout_marginLeft="102dp"
+                android:layout_height="wrap_content"
+
+                />
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:layout_marginLeft="35dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="Sanjana M Hathwar"
+                >
+            </TextView>
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:text="Web App"
+                android:layout_marginLeft="32dp"
+                android:layout_height="wrap_content"
+
+                />
+
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="35dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="A Madhav Bharadwaj"
+                >
+            </TextView>
+            <TextView
+                android:id="@+id/app_count"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:text="Android App"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"
+
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
