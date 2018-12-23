@@ -45,7 +45,30 @@
             android:layout_height="wrap_content"
 
             />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
+            android:layout_marginLeft="35dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="A Madhav Bharadwaj"
+                >
+            </TextView>
+            <TextView
+                android:id="@+id/app_count"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:text="Android App"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"
+
+                />
+        </LinearLayout>
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,30 +125,7 @@
                 />
 
         </LinearLayout>
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
 
-            android:layout_marginLeft="35dp"
-            android:layout_marginBottom="15dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:text="A Madhav Bharadwaj"
-                >
-            </TextView>
-            <TextView
-                android:id="@+id/app_count"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:text="Android App"
-                android:layout_marginLeft="20dp"
-                android:layout_height="wrap_content"
-
-                />
-        </LinearLayout>
 
     </LinearLayout>
 
