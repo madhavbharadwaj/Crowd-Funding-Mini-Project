@@ -31,7 +31,8 @@
         <activity android:name=".login_signup.my_projects" />
         <activity android:name=".login_signup.edit_profile" />
         <activity android:name=".login_signup.admin_page" />
-        <activity android:name=".model.admin_desc"></activity>
+        <activity android:name=".model.admin_desc" />
+        <activity android:name=".login_signup.about_us"></activity>
     </application>
 
 </manifest>

@@ -32,6 +32,7 @@ import com.example.madhav.starter.network.mAPI;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
 
@@ -75,9 +76,18 @@ public class SignUp extends AppCompatActivity {
                 if(CheckInternet())
                 {
 
-
                   //  new LongOperationSignup().execute();
-                    register();
+
+                    if(!isValidMobile(su_phone.getText().toString()))
+                    {
+                        Toast.makeText(getApplication(), "Not Valid Phone Number",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        register();
+                    }
+
                 }
                 else
                 {
@@ -115,6 +125,24 @@ public class SignUp extends AppCompatActivity {
 
             }
         });
+    }
+
+    private boolean isValidMobile(String phone) {
+        boolean check=false;
+        if(!Pattern.matches("[a-zA-Z]+", phone)) {
+            if(phone.length() < 6 || phone.length() > 13) {
+                // if(phone.length() != 10) {
+                check = false;
+                // txtPhone.setError("Not Valid Number");
+                // Toast.makeText(getApplicationContext(), "Not Valid Number",
+                //Toast.LENGTH_LONG).show();
+            } else {
+                check = true;
+            }
+        } else {
+            check=false;
+        }
+        return check;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.example.madhav.starter.model;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -15,9 +16,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.madhav.starter.Home.Dashboard;
 import com.example.madhav.starter.R;
 import com.example.madhav.starter.controller.VolleySingleton;
 import com.example.madhav.starter.login_signup.LoginScreen;
+import com.example.madhav.starter.login_signup.SaveSharedPreference;
 import com.example.madhav.starter.login_signup.admin_page;
 import com.example.madhav.starter.login_signup.edit_profile;
 import com.example.madhav.starter.login_signup.profile;
@@ -25,6 +28,8 @@ import com.example.madhav.starter.network.mAPI;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 
 public class admin_desc extends AppCompatActivity {
 
@@ -44,8 +49,6 @@ public class admin_desc extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_desc);
-
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar_admin_desc);
 
@@ -132,9 +135,6 @@ public class admin_desc extends AppCompatActivity {
                         // Log.d("Response", response);
                         Toast.makeText(admin_desc.this, "Project Approved",
                                 Toast.LENGTH_LONG).show();
-
-
-
                     }
                 },
                 new Response.ErrorListener()
@@ -146,7 +146,6 @@ public class admin_desc extends AppCompatActivity {
                         // Log.d("Error.Response", String.valueOf(error));
                         Toast.makeText(getApplicationContext(), String.valueOf(error),
                                 Toast.LENGTH_LONG).show();
-
                     }
                 }
 
@@ -158,14 +157,14 @@ public class admin_desc extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("email", email_body);
-                params.put("status", "approve");
+                params.put("status", "approved");
                 return params;
             }
         };
 
         VolleySingleton.getInstance(this).addToRequestQueue(postRequest);
     }
-
+/*
     private void reject() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Rejecting ...");
@@ -205,6 +204,68 @@ public class admin_desc extends AppCompatActivity {
 
 
 
+        VolleySingleton.getInstance(this).addToRequestQueue(postRequest);
+    }
+*/
+    private void reject() {
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Rejecting ...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, mAPI.REJECT_URL + id_param,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        progressDialog.dismiss();
+                        // response
+                         Log.d("Response", response);
+                        Log.d("Response", email_body);
+                        Toast.makeText(admin_desc.this, "Project Declined",
+                                Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(admin_desc.this, admin_page.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+
+
+
+
+                        //Intent n = new Intent(LoginScreenActivity.this, HomeActivity.class);
+                        // n.putExtra("puttip",Quotes);
+
+                        // startActivity(n);
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        progressDialog.dismiss();
+                        Log.d("Error.Response", String.valueOf(error));
+                        /*Toast.makeText(LoginScreenActivity.this, "Email or Password is Invalid",
+                                Toast.LENGTH_LONG).show();*/
+
+                        //  pdia.setVisibility(View.GONE);
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("email", email_body);
+
+
+                return params;
+            }
+
+        };
         VolleySingleton.getInstance(this).addToRequestQueue(postRequest);
     }
 }

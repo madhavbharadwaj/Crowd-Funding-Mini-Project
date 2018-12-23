@@ -29,6 +29,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class edit_profile extends AppCompatActivity {
 
@@ -82,12 +83,41 @@ public class edit_profile extends AppCompatActivity {
         btn_editP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editProfile();
+
+                if(!isValidMobile(mobile_ep.getText().toString()))
+                {
+                    Toast.makeText(getApplication(), "Not Valid Phone Number",
+                            Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    editProfile();
+                }
+
+
 
             }
         });
     }
 
+
+    private boolean isValidMobile(String phone) {
+        boolean check=false;
+        if(!Pattern.matches("[a-zA-Z]+", phone)) {
+            if(phone.length() < 6 || phone.length() > 13) {
+                // if(phone.length() != 10) {
+                check = false;
+               // txtPhone.setError("Not Valid Number");
+               // Toast.makeText(getApplicationContext(), "Not Valid Number",
+                        //Toast.LENGTH_LONG).show();
+            } else {
+                check = true;
+            }
+        } else {
+            check=false;
+        }
+        return check;
+    }
     private void getData() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading Data ...");

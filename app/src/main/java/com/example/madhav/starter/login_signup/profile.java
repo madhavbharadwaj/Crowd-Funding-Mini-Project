@@ -38,7 +38,9 @@ public class profile extends AppCompatActivity {
     TextView prof_appr_count;
     TextView prof_pend_count;
 
+
     TextView editBT;
+    TextView aboutBT;
     Button admin;
 
     CardView my_prof_card;
@@ -55,6 +57,7 @@ public class profile extends AppCompatActivity {
         prof_pend_count = findViewById(R.id.prof_pend_count);
         my_prof_card = findViewById(R.id.my_prof_card);
         editBT = findViewById(R.id.editBT);
+        aboutBT = findViewById(R.id.aboutBT);
 
         b3 = findViewById(R.id.button_logout);
 
@@ -65,6 +68,16 @@ public class profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(profile.this, edit_profile.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        aboutBT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(profile.this, about_us.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
