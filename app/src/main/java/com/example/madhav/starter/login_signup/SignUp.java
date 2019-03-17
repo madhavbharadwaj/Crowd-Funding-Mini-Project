@@ -195,9 +195,12 @@ public class SignUp extends AppCompatActivity {
                         // error
                         progressDialog.dismiss();
                         Log.d("Error.Response", String.valueOf(error));
-                        input_status_su.setText("Email ID exists");
+                        input_status_su.setText("Failed to register");
                       //  input_status_su.setTextColor(Color.RED);
                      //   pdia_su.setVisibility(View.GONE);
+
+                        Toast.makeText(getApplicationContext(), "Note : Enter College Email Only !",
+                                Toast.LENGTH_LONG).show();
                     }
                 }
         )

@@ -44,8 +44,8 @@ public class adapter_newest_mca extends RecyclerView.Adapter<adapter_newest_mca.
 
 
         // viewHolder.itemView.setBackgroundColor(Color.parseColor("#008080"));
-        viewHolder.head_newest_mca.setText("Title : " + newestItemMca.getHead_new_mca());
-        viewHolder.desc_newest_mca.setText("Description : "+ newestItemMca.getDesc_new_mca());
+        viewHolder.head_newest_mca.setText(newestItemMca.getHead_new_mca());
+        viewHolder.desc_newest_mca.setText(newestItemMca.getDesc_new_mca());
 
         viewHolder.email_newest_mca.setVisibility(View.GONE);
         viewHolder.domain_newest_mca.setVisibility(View.GONE);

@@ -43,8 +43,8 @@ public class adapter_approved  extends RecyclerView.Adapter<adapter_approved.Vie
 
 
         // viewHolder.itemView.setBackgroundColor(Color.parseColor("#008080"));
-        viewHolder.head_approved.setText("Title : " + approvedItem.getHead_approved());
-        viewHolder.desc_approved.setText("Description : "+ approvedItem.getDesc_approved());
+        viewHolder.head_approved.setText(approvedItem.getHead_approved());
+        viewHolder.desc_approved.setText(approvedItem.getDesc_approved());
 
         viewHolder.email_approved.setVisibility(View.GONE);
         viewHolder.domain_approved.setVisibility(View.GONE);

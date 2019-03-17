@@ -44,8 +44,8 @@ public class adapter_newest_icl extends RecyclerView.Adapter<adapter_newest_icl.
 
 
         // viewHolder.itemView.setBackgroundColor(Color.parseColor("#008080"));
-        viewHolder.head_newest_icl.setText("Title : " + newestItemIcl.getHead_new_icl());
-        viewHolder.desc_newest_icl.setText("Description : "+ newestItemIcl.getDesc_new_icl());
+        viewHolder.head_newest_icl.setText(newestItemIcl.getHead_new_icl());
+        viewHolder.desc_newest_icl.setText(newestItemIcl.getDesc_new_icl());
 
         viewHolder.email_newest_icl.setVisibility(View.GONE);
         viewHolder.domain_newest_icl.setVisibility(View.GONE);

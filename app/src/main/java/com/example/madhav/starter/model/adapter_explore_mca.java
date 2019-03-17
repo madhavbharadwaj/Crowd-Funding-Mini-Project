@@ -43,8 +43,8 @@ public class adapter_explore_mca extends RecyclerView.Adapter<adapter_explore_mc
 
 
         // viewHolder.itemView.setBackgroundColor(Color.parseColor("#008080"));
-        viewHolder.head_exp_mca.setText("Title : " + exploreItemMca.getHead_exp_mca());
-        viewHolder.desc_exp_mca.setText("Description : "+ exploreItemMca.getDesc_exp_mca());
+        viewHolder.head_exp_mca.setText(exploreItemMca.getHead_exp_mca());
+        viewHolder.desc_exp_mca.setText(exploreItemMca.getDesc_exp_mca());
 
         viewHolder.email_exp_mca.setVisibility(View.GONE);
         viewHolder.domain_exp_mca.setVisibility(View.GONE);

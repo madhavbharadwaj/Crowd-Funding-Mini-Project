@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +42,9 @@ public class profile extends AppCompatActivity {
 
     TextView editBT;
     TextView aboutBT;
-    Button admin;
+    TextView admin;
+
+    LinearLayout adminLinear;
 
     CardView my_prof_card;
 
@@ -59,6 +62,7 @@ public class profile extends AppCompatActivity {
         editBT = findViewById(R.id.editBT);
         aboutBT = findViewById(R.id.aboutBT);
 
+        adminLinear = findViewById(R.id.adminLinear);
         b3 = findViewById(R.id.button_logout);
 
         admin = findViewById(R.id.button_admin);
@@ -133,12 +137,14 @@ public class profile extends AppCompatActivity {
 
         //Log.d("Email",restoredText);
 
-        if(restoredText.equals("1bm16mca01@bmsce.ac.in"))
+        if(restoredText.equals("1bm16mca01@bmsce.ac.in") || restoredText.equals("dns.mca@bmsce.ac.in") || restoredText.equals("1bm16mca02@bmsce.ac.in") || restoredText.equals("gk.mca@bmsce.ac.in"))
         {
             admin.setVisibility(View.VISIBLE);
+            adminLinear.setVisibility(View.VISIBLE);
         }
         else
         {
+            adminLinear.setVisibility(View.GONE);
             admin.setVisibility(View.GONE);
         }
 

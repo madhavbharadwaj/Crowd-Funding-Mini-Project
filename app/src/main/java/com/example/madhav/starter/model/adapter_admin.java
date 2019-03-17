@@ -42,8 +42,8 @@ public class adapter_admin  extends RecyclerView.Adapter<adapter_admin.ViewHolde
 
 
         // viewHolder.itemView.setBackgroundColor(Color.parseColor("#008080"));
-        viewHolder.head_admin.setText("Title : " + adminItem.getHead_admin());
-        viewHolder.desc_admin.setText("Description : "+ adminItem.getDesc_admin());
+        viewHolder.head_admin.setText(adminItem.getHead_admin());
+        viewHolder.desc_admin.setText(adminItem.getDesc_admin());
 
         viewHolder.id_admin.setVisibility(View.GONE);
         viewHolder.email_admin.setVisibility(View.GONE);

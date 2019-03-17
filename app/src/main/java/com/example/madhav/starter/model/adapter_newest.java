@@ -54,8 +54,8 @@ public class adapter_newest extends RecyclerView.Adapter<adapter_newest.ViewHold
 
 
        // viewHolder.itemView.setBackgroundColor(Color.parseColor("#008080"));
-        viewHolder.head_newest.setText("Title : " + newestItem.getHead_new());
-        viewHolder.desc_newest.setText("Description : "+ newestItem.getDesc_new());
+        viewHolder.head_newest.setText(newestItem.getHead_new());
+        viewHolder.desc_newest.setText(newestItem.getDesc_new());
 
         viewHolder.email_newest.setVisibility(View.GONE);
         viewHolder.domain_newest.setVisibility(View.GONE);

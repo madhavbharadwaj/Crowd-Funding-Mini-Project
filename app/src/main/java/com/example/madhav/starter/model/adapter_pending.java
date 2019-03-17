@@ -42,8 +42,8 @@ public class adapter_pending extends RecyclerView.Adapter<adapter_pending.ViewHo
 
 
         // viewHolder.itemView.setBackgroundColor(Color.parseColor("#008080"));
-        viewHolder.head_pending.setText("Title : " + pendingItem.getHead_pending());
-        viewHolder.desc_pending.setText("Description : "+ pendingItem.getDesc_pending());
+        viewHolder.head_pending.setText(pendingItem.getHead_pending());
+        viewHolder.desc_pending.setText(pendingItem.getDesc_pending());
 
         viewHolder.email_pending.setVisibility(View.GONE);
         viewHolder.domain_pending.setVisibility(View.GONE);

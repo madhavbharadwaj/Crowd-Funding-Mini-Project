@@ -91,10 +91,7 @@ public class admin_desc extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), email_body,
                         Toast.LENGTH_LONG).show();*/
                 approve();
-                Intent intent = new Intent(admin_desc.this, admin_page.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+
 
             }
         });
@@ -135,6 +132,11 @@ public class admin_desc extends AppCompatActivity {
                         // Log.d("Response", response);
                         Toast.makeText(admin_desc.this, "Project Approved",
                                 Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(admin_desc.this, admin_page.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
                     }
                 },
                 new Response.ErrorListener()

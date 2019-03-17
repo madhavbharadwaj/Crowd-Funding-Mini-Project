@@ -35,8 +35,8 @@ public class adapter_upcoming_mca extends RecyclerView.Adapter<adapter_upcoming_
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         upcomingItemMca upcomingItemMca = ui.get(i);
-        viewHolder.head_upc_mca.setText("Title : " +upcomingItemMca.getHead_upcg_mca());
-        viewHolder.desc_upc_mca.setText("Description : " +upcomingItemMca.getDesc_upcg_mca());
+        viewHolder.head_upc_mca.setText(upcomingItemMca.getHead_upcg_mca());
+        viewHolder.desc_upc_mca.setText(upcomingItemMca.getDesc_upcg_mca());
 
         viewHolder.email_upc_mca.setVisibility(View.GONE);
         viewHolder.domain_upc_mca.setVisibility(View.GONE);

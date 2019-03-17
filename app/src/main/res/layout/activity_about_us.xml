@@ -118,15 +118,84 @@
 
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
-                android:text="Web App"
+                android:text="Web UI"
                 android:layout_marginLeft="32dp"
                 android:layout_height="wrap_content"
 
                 />
 
         </LinearLayout>
+        <TextView
+            android:id="@+id/tab2"
+            android:layout_width="wrap_content"
+            android:text="Mentors"
+            android:layout_margin="20dp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:layout_height="wrap_content"
+
+            />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="35dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="Dr Sujatha D N "
+                >
+            </TextView>
+            <TextView
+                android:id="@+id/des"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:text="Professor"
+                android:layout_marginLeft="44dp"
+                android:layout_height="wrap_content"
+
+                />
 
 
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:layout_marginLeft="35dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="Girish K"
+                >
+            </TextView>
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:text="Assistant Professor"
+                android:layout_marginLeft="102dp"
+                android:layout_height="wrap_content"
+
+                />
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/powered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:text="Powered by ICL"
+            android:textColor="@color/colorPrimary"
+            />
     </LinearLayout>
 
 </RelativeLayout>

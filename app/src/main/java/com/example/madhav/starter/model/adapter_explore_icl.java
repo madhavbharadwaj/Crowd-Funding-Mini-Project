@@ -43,8 +43,8 @@ public class adapter_explore_icl extends RecyclerView.Adapter<adapter_explore_ic
 
 
         // viewHolder.itemView.setBackgroundColor(Color.parseColor("#008080"));
-        viewHolder.head_exp_icl.setText("Title : " + exploreItemIcl.getHead_exp_icl());
-        viewHolder.desc_exp_icl.setText("Description : "+ exploreItemIcl.getDesc_exp_icl());
+        viewHolder.head_exp_icl.setText(exploreItemIcl.getHead_exp_icl());
+        viewHolder.desc_exp_icl.setText(exploreItemIcl.getDesc_exp_icl());
 
         viewHolder.email_exp_icl.setVisibility(View.GONE);
         viewHolder.domain_exp_icl.setVisibility(View.GONE);

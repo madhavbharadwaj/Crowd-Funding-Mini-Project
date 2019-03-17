@@ -35,8 +35,8 @@ public class adapter_upcoming_icl extends RecyclerView.Adapter<adapter_upcoming_
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         upcomingItemIcl upcomingItemIcl = ui.get(i);
-        viewHolder.head_upc_icl.setText("Title : " +upcomingItemIcl.getHead_upcg_icl());
-        viewHolder.desc_upc_icl.setText("Description : " +upcomingItemIcl.getDesc_upcg_icl());
+        viewHolder.head_upc_icl.setText(upcomingItemIcl.getHead_upcg_icl());
+        viewHolder.desc_upc_icl.setText(upcomingItemIcl.getDesc_upcg_icl());
 
         viewHolder.email_upc_icl.setVisibility(View.GONE);
         viewHolder.domain_upc_icl.setVisibility(View.GONE);
